@@ -1,2 +1,1 @@
-# char-creation.io
-Avatar creation beta test for EduSync
+surely smth will be here;3
