@@ -138,8 +138,8 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 }
 
 .flag {
-    width: 50px;
-    height: 35px;
+    max-width: 50px;
+    max-height: 35px;
     border-radius: 5px;
     margin: 5px 2.5px;
     z-index: 20;
@@ -218,7 +218,7 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 }
 
 img.creations-img {
-    width: 360px;
+    width: 320px;
     border-radius: 15px;
     margin: 10px;
 }
