@@ -102,6 +102,7 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
     display: flex;
     flex-wrap: wrap;
     background: beige;
+    overflow: hidden;
     padding: 40px 20px;
     width: 1200px;
 }
