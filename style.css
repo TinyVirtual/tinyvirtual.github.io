@@ -128,8 +128,10 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 }
 
 .pfp {
-    width: 320px;
-    height: 320px;
+    max-width: 320px;
+    max-height: 320px;
+    width: 90%;
+    height: 90%;
     border-radius: 25px;
     filter: drop-shadow(1px 10px 3px #0009);
 }
