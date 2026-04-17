@@ -108,6 +108,7 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 .overall-section {
     display: flex;
     background: beige;
+    flex-wrap: wrap;
     align-content: center;
     align-items: center;
     justify-content: center;
