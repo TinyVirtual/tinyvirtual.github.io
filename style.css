@@ -185,6 +185,9 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 .redish {
     background: #ca5f78;
 }
+.goldish {
+    background: #f0da5e;
+}
 
 .stack-box, .likes-box {
     padding: 20px;
@@ -215,7 +218,7 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 }
 
 img.creations-img {
-    width: 400px;
+    width: 360px;
     border-radius: 15px;
     margin: 10px;
 }
