@@ -101,6 +101,7 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 .overall-div {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     background: beige;
     overflow: hidden;
     padding: 40px 20px;
@@ -146,6 +147,8 @@ a.social-button:hover {transform: scale(1.15) translateY(-10px);filter: drop-sha
 
 .text-container-overall {
     margin-left: 15px;
+    max-width: 700px;
+    width: 70%;
 }
 
 .stack-section {
