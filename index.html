@@ -1,94 +1,112 @@
-<html lang="en-US"><head>
-            <title>Title</title>
-            <link href="./bio/style.css" rel="stylesheet">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-            <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap" rel="stylesheet">
-            <script async="" src="./bio/main.js"></script>
-        </head>
-        <body>
-            <header>
-                <div class="header-overlay">
-                    <h1>Title</h1>
-                    <div class="header-nav">
-                        <a href="" class="header-a">Button</a>
-                    </div>
-                </div>
-            </header>
-            <section id="overall" class="overall-section">
-                <div class="overall-div">
-                    <div class="image-container" style="
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./images/avatar.png">
+    <link href="./bio/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap" rel="stylesheet">
+    <script type="module">
+        import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+        window.marked = marked
+    </script>
+    <script async="" src="./bio/main.js"></script>
+    <script>
+        setTimeout(() => {
+            if (window.loaded) return;
+            document.body.innerHTML = `
+                    <center>
+                        <h1>Failed to load content, please refresh the page.</h1>
+                        <p>Page took too long to load!</p>
+                        <p>Please check your internet connection and try again.</p>
+                        <a href="" class="header-a">Try again</a>
+                    </center>
+                    `
+        }, 5000)
+    </script>
+
+
+
+</head>
+
+<body>
+    <header>
+        <div class="header-overlay">
+            <h1>Title</h1>
+            <div class="header-nav">
+                <a href="" class="header-a">Button</a>
+            </div>
+        </div>
+    </header>
+    <section id="overall" class="overall-section">
+        <div class="overall-div">
+            <div class="image-container" style="
         margin: 10px;
     ">
-                        <img class="pfp" src="./images/avatar.png">
-                        <div class="flags-box">
-                        </div>
-                    </div>
-                    <div id="text_container_overall" class="text-container-overall">
-                        <h1>About Me:</h1>
-                        
-                        
-                        
-                        
-                        
-                    </div>
+                <div id="status" style="display: none;"><p>i like yummy food</p></div>
+                <img class="pfp" src="./images/avatar.png">
+                <div class="flags-box">
                 </div>
-            </section>
-            <section id="socials" class="social-section">
-    <!-- If you want other icons, go to https://www.svgrepo.com/collections/logo/ and grab from there -->
-                <div class="socials-div">
-                    <h1>My Socials</h1><div class="socials-box"></div></div>
-            </section><section id="stack" class="stack-section">
-                <div class="stack-div">
-                    <h1>My Stack:</h1>
-                    <div class="stack-boxes">
-<!-- Template -->
-    
-    </div>
-                </div>
-            </section>
-            <section id="creations" class="creations-section">
-                <div class="creations-div">
-                    <h1>My Creations:</h1>
+                <p id="pronouns">Pronouns:</p>
+            </div>
+            <div id="text_container_overall" class="text-container-overall">
+                <h1>About Me:</h1>
+            </div>
+        </div>
+    </section>
+    <section id="socials" class="social-section">
+        <!-- If you want other icons, go to https://www.svgrepo.com/collections/logo/ and grab from there -->
+        <div class="socials-div">
+            <h1>My Socials</h1>
+            <div class="socials-box"></div>
+        </div>
+    </section>
+    <section id="stack" class="stack-section">
+        <div class="stack-div">
+            <h1>My Stack:</h1>
+            <div class="stack-boxes">
+                <!-- Template -->
 
+            </div>
+        </div>
+    </section>
+    <section id="creations" class="creations-section">
+        <div class="creations-div">
+            <h1>My Creations:</h1>
+        </div>
+    </section>
+    <section id="likes" class="likes-section">
+        <div class="likes-div">
+            <h1>My Likes:</h1>
+            <div class="likes-boxes">
+            </div>
+        </div>
+    </section>
+    <section id="need2know" class="generic-section">
+        <div class="generic-div">
 
-</div>
-            </section>
-            
-        
-    
-<section id="likes" class="likes-section">
-                <div class="likes-div">
-                    <h1>My Likes:</h1>
-                    <div class="likes-boxes">
-                        
-                        
-                        
-                    </div>
+            <div class="text-container-generic">
+                <h1>Need to know about me:</h1>
+            </div>
+        </div>
+    </section>
+    <section id="dreams" class="generic-section">
+        <div class="generic-div">
 
-                </div>
-            </section><section id="need2know" class="generic-section">
-                <div class="generic-div">
-                    
-                    <div class="text-container-generic">
-                        <h1>Need to know about me:</h1>
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </div>
-            </section><section id="dreams" class="generic-section">
-                <div class="generic-div">
-                    
-                    <div class="text-container-generic">
-                        <h1>My Dreams and goals:</h1>
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </div>
-            </section><footer><h3>2020 | Made by TinyVirtual</h3></footer></body></html>
+            <div class="text-container-generic">
+                <h1>My Dreams and goals:</h1>
+            </div>
+        </div>
+    </section>
+    <section id="custom" >
+
+    </section>
+    <footer><h3>2026 | Made by TinyVirtual</h3></footer>
+    <div id="alert_thingy" class="alert" ><a class="alert-a">Loading...</a></div>
+</body>
+
+</html>
