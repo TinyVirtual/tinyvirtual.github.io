@@ -1,0 +1,25 @@
+{
+  "title": "THE PAGE IS ON AIR YAY",
+  "publisher":{ 
+    "pfp": "https://raw.githubusercontent.com/TinyVirtual/TinyVirtual/refs/heads/main/images/pfp.png",
+    "name": "Tiny",
+    "username": "tinyvirtual"
+  },
+  "date": "2026-04-23 13:33:00 GMT-3",
+  "contents":[
+    "I __FINALLY__ managed to finish the code and stuff and now it's (probably) ON AIR",
+    "<br>",
+    "I added new things too:",
+    "- Users page",
+    "- Page selector",
+    "- Markdown support",
+    "- <a href=\"?page=privacy\">Privacy page</a>",
+    "",
+    "i'll probably be using this to post about lond or other things i wanna share, so take as an example my art :3",
+    "<br>",
+    "<img class=\"post-img\" src=\"https://raw.githubusercontent.com/TinyVirtual/tinyvirtual.github.io/refs/heads/main/images/creations/1.png\">",
+    "<img class=\"post-img\" src=\"https://raw.githubusercontent.com/TinyVirtual/tinyvirtual.github.io/refs/heads/main/images/creations/2.png\">",
+    "<img class=\"post-img\" src=\"https://raw.githubusercontent.com/TinyVirtual/tinyvirtual.github.io/refs/heads/main/images/creations/3.png\">"
+  ],
+  "image": "https://media.tenor.com/rbhTFoMbofwAAAAm/wahoo-cat.webp"
+}

@@ -1,0 +1,20 @@
+{
+  "id":0,
+  "title": "The first blog post!",
+  "publisher":{ 
+    "pfp": "https://raw.githubusercontent.com/TinyVirtual/TinyVirtual/refs/heads/main/images/pfp.png",
+    "name": "Tiny",
+    "username": "tinyvirtual"
+  },
+  "date": "2026-04-23 13:33:00 GMT-3",
+  "contents":[
+    "## Hello! welcome to the first post!",
+    "this mini blog page was made using json data for the posts and also uses javascript to load all the content, it's very rusty and stuff, also very bad and unoptimized, also the user must manually put the content, and i cant think in a database thing because right now as i am writing this, i am offline ;-;",
+    "but it's just a test and a dev thingy so.... yeah",
+    "btw it also supports raw html",
+    "<center><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zqw8FylO_Y8?si=ICNvf84AqoBMGTfe\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe></center>",
+    
+    "anyways, until later :3"
+  ],
+  "image": "https://media.tenor.com/-6wMOSOZoeYAAAAi/yippee-creature-epic-artifacis.gif"
+}

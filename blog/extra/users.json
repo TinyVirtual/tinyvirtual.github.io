@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+        "username": "tinyvirtual",
+        "display_name": "Tiny",
+        "avatar": "https://raw.githubusercontent.com/TinyVirtual/TinyVirtual/refs/heads/main/images/pfp.png",
+        "bio": 
+            [
+                "![🐱😎](https://www.gstatic.com/android/keyboard/emojikitchen/20230301/u1f60e/u1f60e_u1f431.png=s16) the owner lol",
+                "📲 My Bio: [Bio](https://tinyvirtual.github.io)",
+                "📚 Studying and working",
+                "⌨️ JavaScript, GML, HTML&CSS and Lua, Learning Java☕",
+                "🎨 Digital Artist,🍩 3D Modeler, 💻 Programmer",
+                "🌌 I am an alien, greetings from Miraja",
+                "🔮 Im a spirit wearing a human body vessel",
+                "🤓 me nerdy lol",
+                "😿 Take it easy on me, I have *autism*, *adhd*, *depression* and *loneliness*",
+                "###### *(yes, i literally snatched from my bio)*"
+            ]
+        }
+    ]
+}
