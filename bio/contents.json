@@ -1,0 +1,236 @@
+{
+    "name":"John Doe",
+    "sections":{
+        "about_me":[
+            "Hello! My name is John doe",
+            "This is a template  about me, put all your info here",
+            "I recomend using a JSON editor online"
+        ],
+        "socials":[
+            "Currently supported platforms:",
+            "Youtube, Tiktok, Instagram, Facebook, Gmail, Linkedin, PlayStation, Spotify, Nintendo, Github, Twitch, Discord, Roblox, Xbox, Steam, NameMC, X",
+            "You must put the id as the platform name all lower case with the sufix '_card'",
+            {
+                "name":"Youtube",
+                "link":"https://google.com/search?q=youtube"
+            },
+            {
+                "name":"Tiktok",
+                "link":"https://google.com/search?q=tiktok"
+            },
+            {
+                "name":"Instagram",
+                "link":"https://google.com/search?q=instagram"
+            }
+        ],
+        "stack":[
+            "You can delete the stacks that does not fit you",
+            "Programming:",
+            {
+                "id":"stack_programming",
+                "name":"💻 Programming",
+                "contents":[
+                    "Language 1 - Experience",
+                    "Language 2 - Experience",
+                    "Language 3 - Experience"
+                ]
+            },
+            "Art:",
+            {
+                "id":"stack_art",
+                "name":"🎨 Art",
+                "contents":[
+                    "Raster - Experience",
+                    "Blender - Experience",
+                    "Animation - Experience",
+                    "Art Type - Experience"
+                ]
+            },
+            "Medals:",
+            {
+                "id":"stack_medals",
+                "name":"🏅 Medals",
+                "contents":[
+                    "Medal 1",
+                    "Medal 2",
+                    "Medal 3"
+                ]
+            },
+            "Tool/Apps:",
+            {
+                "id":"stack_tools",
+                "name":"🛠️ Tools/Apps",
+                "contents":[
+                    "Tool 1",
+                    "Tool 2",
+                    "Tool 3"
+                ]
+            },
+            "Languages:",
+            {
+                "id":"stack_languages",
+                "name":"🌐 Languages",
+                "contents":[
+                    "Englsih - Experience",
+                    "Language 2 - Experience",
+                    "Language 3 - Experience"
+                ]
+            },
+            "Music:",
+            {
+                "id":"stack_music",
+                "name":"🎵 Music",
+                "contents":[
+                    "Compose - Experience",
+                    "FL Studio - Experience",
+                    "Rock - Experience"
+                ]
+            },
+            "Writing:",
+            {
+                "id":"stack_writing",
+                "name":"📚 Writing",
+                "contents":[
+                    "Poems - Experience",
+                    "Lyrics - Experience",
+                    "Dark Romance - Experience"
+                ]
+            }
+        ],
+        "creations":[
+             {
+               "name":"Art",
+                "contents":[
+                    {
+                        "name":"Art 1",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/1.png"
+                    },
+                    {
+                        "name":"Art 2",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/2.png"
+                    },
+                    {
+                        "name":"Art 3",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/3.png"
+                    }
+                ],
+                "see_more":"https://google.com/search?q=see+more"
+            },
+
+            {
+                "name":"Programming",
+                "contents":[
+                    {
+                        "name":"Programing Creation 1",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/1.png",
+                        "link":"https://google.com/"
+                    },
+                    {
+                        "name":"Programing Creation 2",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/2.png",
+                        "link":"https://google.com/"
+                    },
+                    {
+                        "name":"Programing Creation 3",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/3.png",
+                        "link":"https://google.com/"
+                    }
+                ],
+                "see_more":"https://google.com/search?q=see+more"
+            },
+
+            {
+                "name":"Music",
+                "contents":[
+                    {
+                        "name":"Music 1",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/1.png",
+                        "link":"https://google.com/",
+                        "media":"./media/media1.ogg"
+                    },
+                    {
+                        "name":"Music 2",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/2.png",
+                        "link":"https://google.com/",
+                        "media":"./media/media1.ogg"
+                    },
+                    {
+                        "name":"Music 3",
+                        "date":"2026-01-01",
+                        "adress":"./images/creations/3.png",
+                        "link":"https://google.com/",
+                        "media":"./media/media1.ogg"
+                    }
+                ],
+                "see_more":"https://google.com/search?q=see+more"
+            }
+        ],
+        "likes":[
+            "Games:",
+            {
+                "id":"likes_games",
+                "name":"🎮 Games",
+                "contents":[
+                    "Minecraft",
+                    "Game 2",
+                    "Game 3"
+                ]
+            },
+            "Music:",
+            {
+                "id":"likes_music",
+                "name":"🎵 Music",
+                "contents":[
+                    "Album 1 - Artist",
+                    "Album 2 - Artist",
+                    "Album 3 - Artist"
+                ]
+            },
+            "Shows:",
+            {
+                "id":"likes_shows",
+                "name":"📺 Shows",
+                "contents":[
+                    "Show 1",
+                    "Show 2",
+                    "Show 3"
+                ]
+            },
+            "Books:",
+            {
+                "id":"likes_books",
+                "name":"📚 Books",
+                "contents":[
+                    "Book 1",
+                    "Book 2",
+                    "Book 3"
+                ]
+            }
+        ],
+        "need_to_know":[
+            "This is where you put things people need to know about you",
+            "Life experiences, traumas, etc..."
+        ],
+        "dreams":[
+            "Here you put your dreams and goals..."
+        ],
+        "flags":[
+            "./images/flag_1.png",
+            "./images/flag_2.png"
+        ]
+    },
+    "header_buttons":[
+        {
+            "name":"Button",
+            "adress":"https://google.com/search?q=button"
+        }
+    ]
+}
