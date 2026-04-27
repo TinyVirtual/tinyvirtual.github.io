@@ -1,39 +1,63 @@
-//*
-let _json;
+(async function(){
+let _json
+let _json_temp
 
-fetch("./bio/contents.json")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json()
-    })
-    .then(data => {
-        _json = data
-        console.log(_json)
-    })
-    .catch((e) => {
-        document.body.innerHTML = `
+
+try {
+  _json_temp = await fetch("./bio/contents.json")
+} catch (e) {
+   document.body.innerHTML = `<center>
             <h1>Error loading the page!</h1>
             <p>Couldn't load contents.json!</p>
             <p>Error message: ${e.message}</p>
             <p>Please refresh the page! If you're the one making the page, please verify if the JSON is valid or exists!</p>
-        `
-    })
-// */
+        </center>`
+    window.loaded = true
+    throw new Error(`HTTP error! Status: ${_json_temp.status}`);
+}
+
+if (!_json_temp.ok) {
+   document.body.innerHTML = `<center>
+            <h1>Error loading the page!</h1>
+            <p>Couldn't load contents.json!</p>
+            <p>Error message: ${_json_temp.statusText}</p>
+            <p>Please refresh the page! If you're the one making the page, please verify if the JSON is valid or exists!</p>
+        </center>`
+    window.loaded = true
+    throw new Error(`HTTP error! Status: ${_json_temp.status}`);
+}
+_json = await _json_temp.json().catch((e)=>{
+   document.body.innerHTML = `<center>
+            <h1>Error loading the page!</h1>
+            <p>Couldn't parse contents.json!</p>
+            <p>Error message: Invalid JSON</p>
+            <p>If you're the one making the page, please verify if the JSON is valid!</p>
+        </center>`
+    window.loaded = true
+    throw new Error(`JSON error! ${e.message}`);
+});
+
+await new Promise(resolve => {
+  if (document.readyState !== "loading") {
+    resolve(); // already ready
+  } else {
+    document.addEventListener("DOMContentLoaded", resolve);
+  }
+});
 
 
 let containers = {
     header : document.querySelector("header"),
-    header_buttons: document.getElementsByClassName("header-nav"),
+    header_buttons: document.getElementsByClassName("header-nav")[0],
     aboutme : document.getElementById("text_container_overall"),
     socials : document.getElementsByClassName("socials-box")[0],
     stack : document.getElementsByClassName("stack-boxes")[0],
-    creations : document.getElementById("creations").children[0],
+    creations : document.getElementById("creations"),
     likes : document.getElementsByClassName("likes-boxes")[0],
-    need2know : document.getElementById("need2know").children[0].children[0],
-    dreams : document.getElementById("dreams").children[0].children[0],
-    flags : document.getElementsByClassName("flags-box")[0]
+    need2know : document.getElementById("need2know").querySelector(".text-container-generic"),
+    dreams : document.getElementById("dreams").querySelector(".text-container-generic"),
+    flags : document.getElementsByClassName("flags-box")[0],
+    custom_sections : document.getElementById("custom")
 }
 
 let socials_samples = {
@@ -60,11 +84,11 @@ let socials_samples = {
 let samples = {
     flag : `<img class="flag" src="$SOURCE"></img>`,
     
-    card : `<div class="stack-box $COLOR">
-                            <p class="stack-box-title">$TITLE</p>
+    card : `<div class="cards-box $COLOR">
+                            <p class="card-box-title">$TITLE</p>
                             $CONTENT
                         </div>`,
-    card_content : `<p class="stack-box-content">$CONTENT</p>`,
+    card_content : `<p class="cards-box-content">$CONTENT</p>`,
 
 
     creation : `<div class="creation-sample">
@@ -90,24 +114,128 @@ let samples = {
 let colors = ["purplish","greenish","bluish","redish","goldish","orangish","cyanish"]
 
 function elementFromXml(xml_string){
-    var ret = document.createElement("base")
+    var ret = document.createElement("div")
     ret.innerHTML = xml_string
     return ret.firstChild
 }
 
-function idToString(id){
-    a = id.replaceAll("_card"," ").split("_");
-     for(i in a){
-        a[i] = a[i].charAt(0).toUpperCase() + a[i].slice(1)
-    }; 
-    a = a.join(" ")
+const observer = new MutationObserver((mutations) => {
+  for (const mutation of mutations) {
+    for (const node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
 
+      if (node.classList?.contains('vsc-controller')) {
+        node.remove();
+        console.log("Removed a vsc-controller due to display issues!")
+      }
+      //node.querySelectorAll?.('.vsc-controller').forEach(el => el.remove());
+    }
+  }
+});
+
+observer.observe(document.documentElement, {
+  childList: true,
+  subtree: true
+});
+
+function buildCards(stack=_json.sections.stack,container=containers.stack){
+    var minitrack = 0
+    for(let i of stack){
+        if (i&&typeof i === "object"){
+            var mini = samples.card.replaceAll("$TITLE",i.name)
+            var mini2 = ""
+            for(j of i.contents){
+                mini2+=samples.card_content.replaceAll("$CONTENT",j)
+            }
+
+            mini = mini.replaceAll("$CONTENT",mini2).replaceAll("$COLOR",colors[minitrack%colors.length])
+            minitrack++
+            var _card = elementFromXml(mini)
+            container.appendChild(_card)
+        }
+    }
 }
+function buildTextSect(table,container,title){
+    container.innerHTML = `<h1>${title}</h1>`
+    let text = table.join("\n\n")
+    text = marked.parse(text)
+    container.append(elementFromXml("<div>"+text+"</div>"))
+    
+
+    /*
+    for(let i of table){
+        var p = document.createElement("p")
+        p.innerText = i
+        container.appendChild(p)
+    }
+    */
+}
+function buildCreations(_creations,container,section_title){
+    let bbb = document.createElement("div")
+    bbb.classList.add("creations-div")
+    container.appendChild(bbb)
+    bbb.appendChild(elementFromXml(`<h1>${section_title}</h1>`))
+
+    for(let i of _creations){
+        if (typeof i === "object"){
+            var aaa = samples.creation_div.replaceAll("$TITLE",i.name).replaceAll("$SEEMORE",i.see_more)
+            // if else statements bad
+            // use (true)?true:false please
+            // fucking dumbass
+            // this is towards Tiny, not you, reader
+            var creations = []
+            for(j of i.contents){
+                creations[creations.length]  = samples.creation.replaceAll("$SOURCE_IMG",j.address)
+                .replaceAll("$NAME",
+                    (typeof j.name === "string")?j.name:"")
+                .replaceAll("$DATE",
+                    (typeof j.date === "string")?j.date:"")
+                .replaceAll("$LINK",(typeof j.link === "string")?
+                    samples.creation_link.replaceAll("$LINK",j.link):"")
+                .replaceAll("$MEDIA",(typeof j.media === "string")?
+                    samples.creation_media.replaceAll("$SOURCE",j.media):"")
+            }
+            creations = creations.join("\n")
+
+            aaa = aaa.replaceAll("$CREATIONS",creations)
+            bbb.appendChild(elementFromXml(aaa))
+        }
+    }
+
+    return bbb
+}
+function buildRaw(raw,background){
+    var div = document.createElement("div")
+    div.classList.add("custom-section")
+    div.style.background = background
+    div.innerHTML = raw
+    containers.custom_sections.appendChild(div)
+    window.raw = div
+}
+
+if(!_json.name){
+    _json.name = "Nameless User"
+}
+if(!_json.sections){
+   document.body.innerHTML = `<center>
+            <h1>Error loading the page!</h1>
+            <p>Couldn't load contents.json!</p>
+            <p>Error message: Table _json.sections is missing!</p>
+            <p>If you're the one making the page, please verify if the JSON is valid!</p>
+        </center>`
+    window.loaded = true
+    throw new Error("JSON error! Table _json.sections is missing!")
+}
+if(!_json.sections.about_me){
+   _json.sections.about_me = ["This User's biography is empty!"]
+}
+
 /* 
 *
 *       Headers
 *        
 */
+
 document.title = _json.name + "'s Bio"
 containers.header.children[0].children[0].innerText = _json.name + "'s Bio"
 let meta = {}
@@ -123,8 +251,10 @@ meta.name.setAttribute("content",_json.name + "s Bio")
 document.head.appendChild(meta.name)
 
 containers.header_buttons.innerHTML = ""
-for(i of _json.header_buttons){
-    containers.header_buttons.appendChild(elementFromXml(samples.header_button.replaceAll("$LINK",i.adress).replaceAll("$NAME",i.name) ))
+if(_json.header_buttons){
+    for(let i of _json.header_buttons){
+        containers.header_buttons.appendChild(elementFromXml(samples.header_button.replaceAll("$LINK",i.address).replaceAll("$NAME",i.name) ))
+    }
 }
 
 /* 
@@ -133,16 +263,19 @@ for(i of _json.header_buttons){
 *        
 */
 containers.aboutme.innerHTML = "<h1>About Me:</h1>"
-for(i of _json.sections.about_me){
-    var p = document.createElement("p")
-    p.innerText = i
-    containers.aboutme.appendChild(p)
-}
-containers.flags.innerHTML = ""
-for(i of _json.sections.flags){
-    containers.flags.appendChild(elementFromXml(samples.flag.replaceAll("$SOURCE",i)))
+if(_json.pronouns){
+    document.getElementById("pronouns").innerText = "Pronouns: "+_json.pronouns
+} else {
+    document.getElementById("pronouns").remove()
 }
 
+buildTextSect(_json.sections.about_me,containers.aboutme,"About Me:")
+containers.flags.innerHTML = ""
+if (_json.sections.flags){
+    for(let i of _json.sections.flags){
+        containers.flags.appendChild(elementFromXml(samples.flag.replaceAll("$SOURCE",i)))
+    }
+}
 
 /* 
 *
@@ -151,7 +284,7 @@ for(i of _json.sections.flags){
 */
 containers.socials.innerHTML=""
 if (_json.sections.socials){
-    for(i of _json.sections.socials){
+    for(let i of _json.sections.socials){
         if (typeof i === "object"){
             if(typeof i.name === "string"){
                 if(typeof socials_samples[i.name] === "string"){
@@ -170,23 +303,9 @@ if (_json.sections.socials){
 *       Stack
 *        
 */
-var minitrack = 0
 containers.stack.innerHTML = ""
 if(_json.sections.stack){
-    for(i of _json.sections.stack){
-        if (typeof i === "object"){
-            var mini = samples.card.replaceAll("$TITLE",i.name)
-            var mini2 = ""
-            for(j of i.contents){
-                mini2+=samples.card_content.replaceAll("$CONTENT",j)
-            }
-
-            mini = mini.replaceAll("$CONTENT",mini2).replaceAll("$COLOR",colors[minitrack%colors.length])
-            minitrack++
-            var _card = elementFromXml(mini)
-            containers.stack.appendChild(_card)
-        }
-    }
+    buildCards(_json.sections.stack,containers.stack)
 } else {
     document.getElementById("stack").remove()
 }
@@ -199,31 +318,7 @@ if(_json.sections.stack){
 containers.creations.innerHTML = ""
 
 if(_json.sections.creations){
-    for(i of _json.sections.creations){
-        if (typeof i === "object"){
-            var aaa = samples.creation_div.replaceAll("$TITLE",i.name).replaceAll("$SEEMORE",i.see_more)
-
-            // if else statements bad
-            // use (true)?true:false please
-            var creations = []
-            for(j of i.contents){
-                creations[creations.length]  = samples.creation.replaceAll("$SOURCE_IMG",j.adress)
-                .replaceAll("$NAME",
-                    (typeof j.name === "string")?j.name:"")
-                .replaceAll("$DATE",
-                    (typeof j.date === "string")?j.date:"")
-                .replaceAll("$LINK",(typeof j.link === "string")?
-                    samples.creation_link.replaceAll("$LINK",j.link):"")
-                .replaceAll("$MEDIA",(typeof j.media === "string")?
-                    samples.creation_media.replaceAll("$SOURCE",j.media):"")
-            }
-            creations = creations.join("\n")
-
-            aaa = aaa.replaceAll("$CREATIONS",creations)
-            containers.creations.appendChild(elementFromXml(aaa))
-        }
-    }
-    
+    buildCreations(_json.sections.creations,containers.creations,"My Creations")
 } else {
     document.getElementById("creations").remove()
 }
@@ -234,28 +329,16 @@ if(_json.sections.creations){
 *       Likes
 *        
 */
-// yes, this was cloned from stack
-var minitrack = 0
+// yes, this was cloned from stack, sue me
 containers.likes.innerHTML = ""
 
 if(_json.sections.likes){
-    for(i of _json.sections.likes){
-        if (typeof i === "object"){
-            var mini = samples.card.replaceAll("$TITLE",i.name)
-            var mini2 = ""
-            for(j of i.contents){
-                mini2+=samples.card_content.replaceAll("$CONTENT",j)
-            }
-
-            mini = mini.replaceAll("$CONTENT",mini2).replaceAll("$COLOR",colors[minitrack%colors.length])
-            minitrack++
-            var _card = elementFromXml(mini)
-            containers.likes.appendChild(_card)
-        }
-    }
+    buildCards(_json.sections.likes,containers.likes)
 } else {
     document.getElementById("likes").remove()
 }
+
+
 /* 
 *
 *       Need to know & Dreams
@@ -263,25 +346,112 @@ if(_json.sections.likes){
 */
 
 if(_json.sections.need_to_know){
-    containers.need2know.innerHTML = "<h1>Need to know about me:</h1>"
-    for(i of _json.sections.need_to_know){
-        var p = document.createElement("p")
-        p.innerText = i
-        containers.need2know.appendChild(p)
-    }
+    buildTextSect(_json.sections.need_to_know,containers.need2know,"Need to know about me:")
 } else {
     document.getElementById("need2know").remove()
 }
 
 
 if(_json.sections.dreams){
-    containers.dreams.innerHTML = "<h1>My Dreams and goals:</h1>"
-    for(i of _json.sections.dreams){
-        var p = document.createElement("p")
-        p.innerText = i
-        containers.dreams.appendChild(p)
-    }
+    buildTextSect(_json.sections.dreams,containers.dreams,"My Dreams and goals:")
 } else {
     document.getElementById("dreams").remove()
 }
 
+/*
+*
+*       Custom Sections
+*        
+*       Mini reference:
+*            {
+*                "name":"custom_section",
+*                "type":"html",
+*                "content":"<h1>Raw Section</h1>",
+*                "background":"#ffffffff"
+*            }
+*/
+
+if(_json.custom_sections){
+    for(let i of _json.custom_sections){
+        if (i&&typeof i === "object" && i.enabled){
+            switch(i.type){
+                case "creations":
+                    let a = buildCreations(i.content,containers.custom_sections,i.name)
+                    a.style.background = i.background
+                    break;
+                case "html":
+                    buildRaw(`
+                        <h1 style="text-align: center;margin-top:0px;">${i.name}</h1>
+                        <div id="${"custom_"+i.name.toLowerCase().replaceAll(" ","_")}">
+                            ${i.content}
+                        </div>`, i.background)
+                    break;
+                case "cards":
+                    let d = document.createElement("div")
+                    d.classList.add("cards-div")
+                    d.innerHTML = `<h1>${i.name}</h1>`
+                    d.style.background = i.background
+                    let b = document.createElement("div")
+                    b.classList.add("cards-boxes")
+                    d.appendChild(b)
+                    buildCards(i.contents,b)
+                    containers.custom_sections.appendChild(d)
+                    break;
+                case "text":
+                    let d1 = document.createElement("div")
+                    d1.classList.add("generic-section")
+                    d1.style.background = i.background
+                    containers.custom_sections.appendChild(d1 )
+
+                    let d2 = document.createElement("div")
+                    d2.classList.add("generic-div")
+                    d1.appendChild(d2)
+
+                    buildTextSect(i.content,d2,i.name)
+                    break;
+            }
+        }
+    }
+} else {
+    document.getElementById("custom").remove()  
+}
+
+setTimeout(()=>{
+    document.getElementById("alert_thingy").remove();
+},5)
+window.loaded = true
+
+/*
+*
+*       Status
+*
+*/
+
+if(_json.status && _json.status.enabled){
+    let status_div = document.getElementById("status")
+    status_div.style.display = "block"
+    if(typeof _json.status === "string"){
+        status_div.innerHTML = `<p>${_json.status}</p>`
+    } else if(typeof _json.status === "object"){
+        if(typeof _json.status.type === "string"){
+           switch(_json.status.type){
+                case "random":
+                    let status_text = _json.status.source[Math.floor(Math.random()*_json.status.source.length)]
+                    console.log(status_text)
+                    status_div.innerHTML = `${marked.parse(status_text)}`
+                    break;
+                case "text":
+                    status_div.innerHTML = `<p>${_json.status.source}</p>`
+                    break; 
+            }
+        }
+    } else {
+        document.getElementById("status").remove()
+    }
+} else {
+    document.getElementById("status").remove()
+}
+
+
+//this script has been changed so much that the coments don't make sense anymore :/
+})()
