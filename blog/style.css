@@ -426,3 +426,12 @@ span.selector-span {
     padding: 15px 25px;
     border-radius: 5px;
 }
+
+
+#share_button {
+    cursor: pointer;
+}
+
+#share_button:hover {
+    color: #3636cf;
+}
