@@ -1,10 +1,16 @@
 {
-    "name":"John Doe",
+    "name":"TinyVirtual",
+    "pronouns":"they/them | any pronouns",
     "sections":{
         "about_me":[
-            "Hello! My name is John doe",
-            "This is a template  about me, put all your info here",
-            "I recomend using a JSON editor online"
+            "![🏳](https://raw.githubusercontent.com/TinyVirtual/TinyVirtual/refs/heads/main/images/flag.svg) Aroace Agender | (they/them/any)",
+            "📚 Studying and working",
+            "⌨️ JavaScript, GML, HTML&CSS and Lua, Learning Java☕",
+            "🎨 Digital Artist,🍩 3D Modeler, 💻 Programmer",
+            "🌌 I am an alien, greetings from Miraja",
+            "🔮 Im a spirit wearing a human body vessel",
+            "🤓 me nerdy lol",
+            "😿 Take it easy on me, I have *autism*, *adhd*, *depression* and *loneliness*"
         ],
         "socials":[
             "Currently supported platforms:",
@@ -12,15 +18,39 @@
             "You must put the id as the platform name all lower case with the sufix '_card'",
             {
                 "name":"Youtube",
-                "link":"https://google.com/search?q=youtube"
+                "link":"https://www.youtube.com/@tinyvirtual"
             },
             {
                 "name":"Tiktok",
-                "link":"https://google.com/search?q=tiktok"
+                "link":"https://tiktok.com/@tiny.virtual2"
             },
             {
-                "name":"Instagram",
-                "link":"https://google.com/search?q=instagram"
+                "name":"Github",
+                "link":"https://github.com/TinyVirtual"
+            },
+            {
+                "name":"Twitch",
+                "link":"https://twitch.tv/tinyvirttual"
+            },
+            {
+                "name":"Discord",
+                "link":"https://discord.gg/9ECXecSaNc"
+            },
+            {
+                "name":"Roblox",
+                "link":"https://roblox.com/users/profile?user=TinyVirtual"
+            },
+            {
+                "name":"Xbox",
+                "link":"https://www.xbox.com/play/user/TinyVirtual"
+            },
+            {
+                "name":"Steam",
+                "link":"https://steamcommunity.com/id/tinyvirtual/"
+            },
+            {
+                "name":"NameMC",
+                "link":"https://namemc.com/tinyvirtual"
             }
         ],
         "stack":[
@@ -30,9 +60,10 @@
                 "id":"stack_programming",
                 "name":"💻 Programming",
                 "contents":[
-                    "Language 1 - Experience",
-                    "Language 2 - Experience",
-                    "Language 3 - Experience"
+                    "JavaScript - Familiar",
+                    "GML - Familiar",
+                    "Luau - Familiar",
+                    "Java - Early Beginner"
                 ]
             },
             "Art:",
@@ -40,10 +71,9 @@
                 "id":"stack_art",
                 "name":"🎨 Art",
                 "contents":[
-                    "Raster - Experience",
-                    "Blender - Experience",
-                    "Animation - Experience",
-                    "Art Type - Experience"
+                    "Raster - Beginner",
+                    "Blender - Beginner",
+                    "HTML5 & CSS - Familiar"
                 ]
             },
             "Medals:",
@@ -51,9 +81,9 @@
                 "id":"stack_medals",
                 "name":"🏅 Medals",
                 "contents":[
-                    "Medal 1",
-                    "Medal 2",
-                    "Medal 3"
+                    "🥉 2019 Bronze Medal National Math Olympics",
+                    "🥉 2024 Bronze Medal Regional Math Olympics",
+                    "🥈 2025 Silver Medal Regional Math Olympics"
                 ]
             },
             "Tool/Apps:",
@@ -61,9 +91,13 @@
                 "id":"stack_tools",
                 "name":"🛠️ Tools/Apps",
                 "contents":[
-                    "Tool 1",
-                    "Tool 2",
-                    "Tool 3"
+                    "Ibis Paint",
+                    "Blender",
+                    "Gamemaker Studio 2",
+                    "Visual Studio Code",
+                    "Canva",
+                    "OBS Studio",
+                    "Github"
                 ]
             },
             "Languages:",
@@ -71,29 +105,10 @@
                 "id":"stack_languages",
                 "name":"🌐 Languages",
                 "contents":[
-                    "Englsih - Experience",
-                    "Language 2 - Experience",
-                    "Language 3 - Experience"
-                ]
-            },
-            "Music:",
-            {
-                "id":"stack_music",
-                "name":"🎵 Music",
-                "contents":[
-                    "Compose - Experience",
-                    "FL Studio - Experience",
-                    "Rock - Experience"
-                ]
-            },
-            "Writing:",
-            {
-                "id":"stack_writing",
-                "name":"📚 Writing",
-                "contents":[
-                    "Poems - Experience",
-                    "Lyrics - Experience",
-                    "Dark Romance - Experience"
+                    "Englsih - Experienced",
+                    "[Brazilian] Portguese - Fluent",
+                    "Spanish - Low Knowledge",
+                    "Japanese - Early Learning"
                 ]
             }
         ],
@@ -102,75 +117,53 @@
                "name":"Art",
                 "contents":[
                     {
-                        "name":"Art 1",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/1.png"
+                        "name":"Gabe Wave",
+                        "date":"2026-03-19",
+                        "address":"./images/creations/1.png"
                     },
                     {
-                        "name":"Art 2",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/2.png"
+                        "name":"Neobun",
+                        "date":"2026-02-15",
+                        "address":"./images/creations/2.png"
                     },
                     {
-                        "name":"Art 3",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/3.png"
+                        "name":"Gabe Silly",
+                        "date":"2026-03-18",
+                        "address":"./images/creations/3.png"
+                    },
+                    {
+                        "name":"Gabe 3D Model",
+                        "date":"2026-03-08",
+                        "address":"./images/creations/4.png"
+                    },
+                    {
+                        "name":"Plasmato Thinking",
+                        "date":"2025-10-03",
+                        "address":"./images/creations/5.png"
+                    },
+                    {
+                        "name":"Kamyle Wave",
+                        "date":"2025-09-26",
+                        "address":"./images/creations/6.png"
                     }
-                ],
-                "see_more":"https://google.com/search?q=see+more"
+                ]
             },
 
             {
                 "name":"Programming",
                 "contents":[
                     {
-                        "name":"Programing Creation 1",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/1.png",
-                        "link":"https://google.com/"
+                        "name":"Lond - Soon",
+                        "date":"Since January 2026, Still in Development",
+                        "address":"./images/creations/7.png"
                     },
                     {
-                        "name":"Programing Creation 2",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/2.png",
-                        "link":"https://google.com/"
-                    },
-                    {
-                        "name":"Programing Creation 3",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/3.png",
-                        "link":"https://google.com/"
+                        "name":"Cipher Test",
+                        "date":"2026-04-02",
+                        "address":"./images/creations/8.png",
+                        "link":"https://tinyvirtual.github.io/projects.io/cryptography/encoder_page.html"
                     }
-                ],
-                "see_more":"https://google.com/search?q=see+more"
-            },
-
-            {
-                "name":"Music",
-                "contents":[
-                    {
-                        "name":"Music 1",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/1.png",
-                        "link":"https://google.com/",
-                        "media":"./media/media1.ogg"
-                    },
-                    {
-                        "name":"Music 2",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/2.png",
-                        "link":"https://google.com/",
-                        "media":"./media/media1.ogg"
-                    },
-                    {
-                        "name":"Music 3",
-                        "date":"2026-01-01",
-                        "adress":"./images/creations/3.png",
-                        "link":"https://google.com/",
-                        "media":"./media/media1.ogg"
-                    }
-                ],
-                "see_more":"https://google.com/search?q=see+more"
+                ]
             }
         ],
         "likes":[
@@ -180,8 +173,11 @@
                 "name":"🎮 Games",
                 "contents":[
                     "Minecraft",
-                    "Game 2",
-                    "Game 3"
+                    "Roblox*",
+                    "Undertale & Deltarune",
+                    "OneShot",
+                    "Stardew Valley",
+                    "Terraria"
                 ]
             },
             "Music:",
@@ -189,9 +185,10 @@
                 "id":"likes_music",
                 "name":"🎵 Music",
                 "contents":[
-                    "Album 1 - Artist",
-                    "Album 2 - Artist",
-                    "Album 3 - Artist"
+                    "Minecraft OST - C418, Lena Raine, Aaron Cherof & 3 more",
+                    "Undertale & Deltarune OST - Toby Fox",
+                    "Stardew Valley OST - ConcernedApe",
+                    "YonKaGor Singles"
                 ]
             },
             "Shows:",
@@ -199,38 +196,59 @@
                 "id":"likes_shows",
                 "name":"📺 Shows",
                 "contents":[
-                    "Show 1",
-                    "Show 2",
-                    "Show 3"
-                ]
-            },
-            "Books:",
-            {
-                "id":"likes_books",
-                "name":"📚 Books",
-                "contents":[
-                    "Book 1",
-                    "Book 2",
-                    "Book 3"
+                    "Gravity Falls",
+                    "The Amazing Digital Circus",
+                    "Kimetsu no Yayba - Demon Slayer",
+                    "Murder Drones",
+                    "Others I can't remember :P"
                 ]
             }
         ],
         "need_to_know":[
-            "This is where you put things people need to know about you",
-            "Life experiences, traumas, etc..."
+            "I kinda like the ability of characters to like, remove their limbs and be able to still control them and even reattach back, or character that can regen or that suffers a really bad injury and still stays like it's fine, not really gore or thing (i dont like gore), but kinda cartoony, without looking violent or nasty",
+            "it falls more into surrealistic than to gore btw",
+            "<br>",
+            "Aroace: Not being atracted romantically or sexually to a gender, Unable to feel romantic or sexual love, Desire to not enter in a relationship;",
+            "Agender: Not fitting inside a gender, not being able to recognize yourself in a specific gender.",
+            "<br>",
+            "i got several injuries to my head, i feel head first from a tree house twice, broke a thick chocolate brick with my head, i trew a hoose metal trigger into my forehead, etc...",
+            "<br>",
+            "also, my religion is Spiritism",
+            "i am a very meat enthusiast, my diet is basically meat, I LOVE MEAT (im sorry vegans)",
+            "i also have 2 years of delayed body development, which means that even though if i am 17, i look like, behave like and acts like 15",
+            "<br>",
+            "also i am very silly usually, but sometimes i get depressive ;-;"
         ],
         "dreams":[
-            "Here you put your dreams and goals..."
+            "For now i want a better pc, a vr and a fursuit X3",
+            "I want to help people, be kind and spread kindness",
+            "I wanna release a indie game too",
+            "I urge for monay",
+            "I also wanna make a webcomic or a series idk"
         ],
         "flags":[
             "./images/flag_1.png",
             "./images/flag_2.png"
         ]
     },
+    
     "header_buttons":[
         {
-            "name":"Button",
-            "adress":"https://google.com/search?q=button"
+            "name":"My Github",
+            "address":"https://github.com/TinyVirtual"
+        },
+        {
+            "name":"My devblog",
+            "address":"https://tinyvirtual.github.io/blog/index.html?page=0"
         }
-    ]
+    ],
+    "status":{
+        "type":"random",
+        "source":[
+            ":3",
+            "so lonely 😭",
+            "i wanna money",
+            "hotdogs are yummy"
+        ]
+    }
 }
