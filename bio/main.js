@@ -1,7 +1,7 @@
 //*
 let _json;
 
-fetch("./contents.json")
+fetch("./bio/contents.json")
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
