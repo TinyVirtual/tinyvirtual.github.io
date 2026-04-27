@@ -140,6 +140,22 @@ async function load_post(id){
             let post_element = elementFromXml(post_html)
             console.log(post_element)
             containers.content().appendChild(post_element)
+            
+            document.getElementById("share_button").addEventListener("click",async ()=>{
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: "Tiny's Devblog Post",
+                            text: `Post "${_json.title}" by ${_json.publisher.name}`,
+                            url: window.location.href
+                        })
+                    } catch (err) {
+                        console.error('Error sharing:', err)
+                    }
+                } else {
+                    alert('Web Share API not supported in this browser.');
+                }
+            })
         } else {
             containers.content().innerHTML = presets.err.replaceAll("$ERROR", `Error status ${e} while fetching post!`)
         }
