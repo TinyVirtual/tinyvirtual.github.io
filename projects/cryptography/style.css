@@ -1,0 +1,199 @@
+header {
+    background: repeating-linear-gradient(45deg, #649ac7, #3e7db3 12px);
+}
+
+.header-overlay {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    background: linear-gradient(90deg, #00d18edf, #007f6775);
+    padding: 22px;
+    padding-bottom: 2px;
+}
+.alert {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #0005;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+.alert-a {
+    outline: white 2px;
+    color: white;
+    background: black;
+    padding: 5px 8px;
+    border-radius: 10px;
+}
+.something-wrong {
+    display: none;
+}
+
+h1 {
+    color: white;
+    font-family: "Patrick Hand", cursive, sans-serif, system-ui, auto;
+    padding-left: 15px;
+}
+
+body {
+    background: #649ac7;
+    font-family: "Patrick Hand", cursive, sans-serif, system-ui, auto;
+    margin: 0;
+}
+.header-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.result {
+    flex-direction: column;
+    align-items: flex-start;
+}
+.header-a {
+    font-family: "Patrick Hand", cursive, sans-serif, system-ui, auto;
+    background: #0004;
+    color: #bef;
+    padding: 12px 20px;
+    border-radius: 2em;
+    text-decoration: none;
+    break-after: avoid;
+    -webkit-box-decoration-break: clone;
+    transition: 0.2s;
+}
+.header-a:hover {
+    background: #3334;
+    color: #fff;
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+.about {
+    background: linear-gradient(0deg, #649ac7, #649ac742);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
+    align-items: center;
+    z-index: 0;
+    margin-top: -50px;
+    padding-top: 70px;
+    max-width: stretch;
+    width: 100%;
+}
+
+.boxes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: center;
+    margin-top: 5px;
+    margin-bottom: -5px;
+    z-index: 1;
+
+}
+.main-box{
+    background: rgb(205, 205, 205);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    padding-top: 30px;
+    position: relative;
+}
+.encode-box {
+    background: linear-gradient(180deg, #d1ab55, #cd8a26);
+    box-shadow: 0px 6px 15px 1px #8b5e1a;
+}
+.decode-box {
+    background: linear-gradient(180deg, #649ac7, #3e7db3);
+    box-shadow: 0px 6px 15px 1px #26659b;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 24em;
+    border-radius: 2vh;
+    margin: 8px;
+    padding: 8px 5px;
+
+}
+
+p {
+    font-family: "Patrick Hand", cursive, sans-serif, system-ui, auto;
+    margin: 2px 0px;
+    max-width: 75%;
+}
+
+input[type=text], textarea {
+    border: none;
+    border-radius: 2vh;
+    width: 40%;
+    height: 32px;
+    font-family: 'Patrick Hand', cursive, system-ui;
+    outline: none;
+    background: linear-gradient(0deg, #b5bce7, #abe0ff);
+    font-size: large;
+    box-sizing: border-box;
+}
+input[type=text]:hover, textarea:hover {
+    border: 2px solid #8787e17f;
+}
+input[type=text]:focus, textarea:focus {
+    background: linear-gradient(0deg, #7281dd, #abe0ff);
+    border: 2px solid #6666ed;
+}
+textarea[readonly] {
+    background: #b3b3b3;
+    box-shadow: inset 0px -3px 20px 5px #0000004f;
+    border: solid 2px #222e3a;
+}
+textarea[readonly]:hover {
+    background: #bfbfbf;
+    border: solid 2px #222e3a;
+}
+textarea[readonly]:active {
+    background: #cdcdcd;
+    border: solid 2px #222e3a;
+    cursor: pointer;
+}
+button {
+    border: none;
+    border-radius: 2vh;
+    width: 33%;
+    height: 32px;
+    font-family: 'Patrick Hand', cursive, system-ui;
+    outline: none;
+    background: linear-gradient(179deg, #31817d, #1a4b32);
+    color: white;
+    font-size: large;
+}
+button:hover {
+    background: linear-gradient(179deg, #3fafa9, #1a4b32);
+}
+button:active {
+    background: linear-gradient(179deg, #58e770, #31a54f);
+}
+
+textarea {
+    width: 360px !important;
+    height: 160px;
+}
+
+h2 {
+    font-family: "Patrick Hand", cursive, sans-serif, system-ui, auto;
+    font-size: xx-large;
+    margin: 2px 0px;
+}

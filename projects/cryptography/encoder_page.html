@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+        <title>Tiny's key text stuff</title>
+        <link href="./style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap" rel="stylesheet">
+        <script async="" src="./main.js"></script>
+        <meta property="og:title" content="Tiny's key text stuff">
+        <meta property="og:site_name" content="Tiny's key text stuff">
+        <meta property="og:description" content="This is a webpage to encode text with a secret key, so you can talk public to your friends without other ppl knowing what is the thing being talked about">
+    </head>
+    <body>
+        <header>
+            <div class="header-overlay">
+                <h1>Tiny's key text stuff</h1>
+                <div class="header-nav"><a href="https://github.com/TinyVirtual" class="header-a">My Github</a></div>
+            </div>
+        </header>
+        <div class="main-box">
+    
+            <p class="something-wrong" style="color: red; font-weight: 600; font-size: x-large">
+                Oops: Something went wrong while loading this page! Stylesheets couldn't be applied, reload the page
+                might fix!
+            </p>
+            <br><noscript>Javascript is required to run this page!</noscript>
+    <div class="boxes">
+            <div class="encode-box box">
+                <h2>Encode</h2>
+                <br><p>Plain text</p><textarea id="encode_text"></textarea><br><p>Key</p><input id="encode_key" type="text"><br><button id="encode_button">Encode</button><div class="result" id="encode_result_div" style="display: none;"><p>Result:</p><textarea id="encode_result" readonly=""></textarea><p>Click above to copy the text</p>
+    
+    </div>
+            </div>
+            <div class="decode-box box">
+                <h2>Decode</h2>
+                <br><p>Plain text</p><textarea id="decode_text"></textarea><br><p>Key</p><input id="decode_key" type="text"><br><button id="decode_button">Decode</button>
+            <div id="decode_result_div" class="result" style="display: none;"><p>Result:</p><textarea id="decode_result" readonly=""></textarea><p>Click above to copy the text</p>
+    
+    </div></div>
+        </div><div class="about"><p>This is a simple criptography tool with key i made just out of boredom and to try and learn a bit of cryptology</p><p>this tools grabs the original text, turn into numbers, hash the key, does lots of math i can't even explain and returns the cyphered text, and to decode its just the oposite, btw this is very unsafe since only have 4096 diferent hashes and can be easely broken by any machine if you know the logic behind, but it's kinda fun to think how one thing becomes another based on text, also don't decode with wrong key, or else you'll get garbage characters XD</p></div>
+</div><div id="alert_thingy" class="alert" style="display: none;"><a class="alert-a">Copied to clipboard</a></div>
+    
+
+</body></html>
