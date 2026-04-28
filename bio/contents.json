@@ -162,7 +162,7 @@
                         "name":"Cipher Test",
                         "date":"2026-04-02",
                         "address":"./images/creations/8.png",
-                        "link":"https://tinyvirtual.github.io/projects.io/cryptography/encoder_page.html"
+                        "link":"https://tinyvirtual.github.io/projects/cipher/"
                     }
                 ],
                 "see_more":"javasctipt:alert(\"soon\")"
