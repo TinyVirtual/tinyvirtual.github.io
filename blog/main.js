@@ -113,6 +113,40 @@ function elementFromXml(xml_string){
 
 let params = new URLSearchParams(window.location.search)
 
+async function load_amount(){
+    if(!localStorage.getItem("page_amount")){
+        var temp_req = await fetch("https://api.github.com/repos/TinyVirtual/tinyvirtual.github.io/contents/blog/posts/")
+        var post_qt = (await temp_req.json()).length-2
+        localStorage.setItem("page_amount",JSON.stringify(
+          {
+            max: post_qt,
+            time: (new Date()).valueOf()
+          }
+        ))
+        return post_qt
+    } else {
+        try {
+            let _j = JSON.parse(localStorage.getItem("page_amount"))
+            
+            if((new Date()).valueOf() - (new Date(_j.time)).valueOf() > 300000 || !_j.max){
+                
+                var temp_req = await fetch("https://api.github.com/repos/TinyVirtual/tinyvirtual.github.io/contents/blog/posts/")
+                var post_qt = (await temp_req.json()).length-2
+                localStorage.setItem("page_amount",JSON.stringify({max:post_qt,time:(new Date()).valueOf()}))
+                return post_qt
+            } else {
+                return _j.max
+            }
+        } catch(e) {
+            var temp_req = await fetch("https://api.github.com/repos/TinyVirtual/tinyvirtual.github.io/contents/blog/posts/")
+            var post_qt = (await temp_req.json()).length-2
+            localStorage.setItem("page_amount",JSON.stringify({max:post_qt,time:(new Date()).valueOf()}))
+            return post_qt
+        }
+    }
+}
+
+
 async function load_post(id){
     let _json
     let e = 200
@@ -167,11 +201,16 @@ async function load_page(page,max=10){
     let aval = [0,0]
     let track = 0
     if(!isNaN(page)){
+        var post_qt = await load_amount()
+        //why -2? because index start at 0 and secret post
+        
+        
         try {
-            let aval = await fetch(`./posts/${page*10}.json`)
-
-            for(let p = page * max; p < (page * max)+(max-1); p++){
+            
+            for(let p = post_qt-(page * max); p > (post_qt-(page * max))-max; p--){
                 let curr = _json.length
+                
+                
                 _json[curr] = await fetch(`./posts/${p}.json`)
 
                 if(!_json[curr].ok){
@@ -192,22 +231,21 @@ async function load_page(page,max=10){
                 }
             }
             
-            console.log(track, _json.length)
+            //console.log(track, _json.length)
             if(track == _json.length){
                 containers.content().innerHTML = presets.page_unav.replaceAll("$ERR", "No posts found on this page!")
             } else {
-                aval[0] = await fetch(`./posts/${(page * max)-max}.json`)
-                aval[1] = await fetch(`./posts/${((page * max)+max)}.json`)
-                console.log(aval[0].status,aval[1].status)
-
+                aval[0] = page > 0
+                aval[1] = page*max+max < post_qt+1
+                //console.log(aval[0],aval[1])
+                
                 
                 containers.selector().innerHTML = presets.page_nav
-                    .replaceAll("$LESS",aval[0].status==200 ? `href="?page=${Number(page)-1}"`:"")
-                    .replaceAll("$MORE",aval[1].status==200 ? `href="?page=${Number(page)+1}"`:"")
+                    .replaceAll("$LESS",aval[0] ? `href="?page=${Number(page)-1}"`:"")
+                    .replaceAll("$MORE",aval[1] ? `href="?page=${Number(page)+1}"`:"")
                     .replaceAll("$NUMBER",page)
             }
-            
-            
+        
 
 
         } catch (e) {
