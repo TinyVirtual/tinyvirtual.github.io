@@ -1,0 +1,14 @@
+{
+  "title": "Title",
+  "publisher":{ 
+    "pfp": "Profile Picture Url",
+    "name": "Name",
+    "username": "Username"
+  },
+  "date": "2026-04-28 17:29:00 GMT-3",
+  "contents":[
+    "Line 1",
+    "Line 2"
+  ],
+"image": "Image Url"
+}
