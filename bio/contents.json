@@ -132,6 +132,11 @@
                         "address":"./images/creations/3.png"
                     },
                     {
+                        "name":"Tide Comic",
+                        "date":"2026-04-29",
+                        "address":"./images/creations/comic.png"
+                    },
+                    {
                         "name":"Gabe 3D Model",
                         "date":"2026-03-08",
                         "address":"./images/creations/4.png"
@@ -163,6 +168,12 @@
                         "date":"2026-04-02",
                         "address":"./images/creations/8.png",
                         "link":"https://tinyvirtual.github.io/projects/cipher/"
+                    },
+                    {
+                        "name":"JSON&JS Devblog",
+                        "date":"2026-04-23",
+                        "address":"./images/creations/devblog_cover.jpg",
+                        "link":"https://tinyvirtual.github.io/blog/?page=0"
                     }
                 ],
                 "see_more":"javasctipt:alert(\"soon\")"
