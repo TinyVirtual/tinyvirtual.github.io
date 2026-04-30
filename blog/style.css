@@ -49,6 +49,13 @@ p {
     border-radius: 25px;
     background: #0001;
 }
+.post-img-width {
+    margin: 5px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 25px;
+    background: #0001;
+}
 
 .post {
     display: flex;
