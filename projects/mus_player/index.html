@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music PLayer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsmediatags/dist/jsmediatags.min.js"></script>
+    
+</head>
+<body>
+    <div class="player-backdrop">
+        <canvas id="canvas" width="1980" height="1080"></canvas>
+    </div>
+    <div class="player-div">
+        <div class="mus-content-div">
+            <img id="cover" src="https://static.vecteezy.com/system/resources/previews/000/421/044/original/music-note-icon-vector-illustration.jpg" alt="">
+            <div class="music-content">
+                <h1 id="title" class="player-text">Music Title</h1>
+                <h2 id="artist" class="player-text">Artist - Album</h2>
+                <p id="date" >Date - Gender</p>
+            </div>
+        </div>
+        <div class="controls">
+            <a id="time_display">0:00</a>
+            <button id="rewind" class="button">⏮</button>
+            <button id="pause" class="button">⏸</button>
+            <button id="skip" class="button">⏭</button>
+            <input id="time" type="range" min="0" max="100" step="0.01" value="0">
+            <input id="spd" type="range" min="0.8" max="1.5" step="0.1" value="1">
+        </div>
+    </div>
+    <div class="selector">
+        <label>Select folder</label>
+        <input id="input" type="file" webkitdirectory multiple>
+    </div>
+    <button id="show">List</button>
+    <div class="selector" id="playlist"></div>
+    <div id="music">
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

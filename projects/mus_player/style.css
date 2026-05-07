@@ -1,0 +1,220 @@
+html, body {
+    height: 99%;
+}
+
+
+body {
+    background: rgb(8, 30, 48);
+    color: #fff;
+    font-family: "Roboto", "Segoe UI";
+    display: flex;
+    height: stretch;
+    align-items: center;
+}
+
+.mus-content-div img {
+    width: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px 3px #0009;
+}
+
+.mus-content-div {
+    margin-left: 20px;
+    display: flex;
+    height: max-content;
+    align-items: center;
+}
+
+.aero * {
+    filter: drop-shadow(0px 0px 5px #0005);
+}
+
+.music-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    filter: drop-shadow(1px 1px 8px #000);
+}
+
+* [hidden]{
+    display: none !important;
+}
+
+.controls {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 10px;
+    width: 90%;
+    margin-right: 200px;
+}
+
+.selector {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 20px 30px;
+    background: #0004;
+    border-radius: 10px;
+}
+
+.player-backdrop {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.player-backdrop::before {
+    content: "";
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 0px 80px 5px #0005 inset;
+}
+
+#music {
+    opacity: 0;
+    position: fixed;
+    display: none;
+}
+
+.player-backdrop::after {
+    content: "";
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    opacity: .3;
+    background: radial-gradient(#fff0 30%, #00124171 120%),
+                repeating-linear-gradient(60deg, #fff0 10px, #fff6 15px, #fff6 30px, #fff0 35px, #fff0 80px, #fff6 85px, #fff6 130px, #fff0 135px, #fff0 200px, #fff6 205px, #fff6 270px, #fff0 275px, #fff0 300px, #fff6 305px, #fff6 345px, #fff0 350px 400px),
+                linear-gradient(0deg, rgba(102, 153, 170, 0.247), transparent),
+                linear-gradient(180deg, #ffffff62 20px, #fff0 80px);
+    backdrop-filter: blur(2px);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+#playlist {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    margin: 4px 0;
+    cursor: grab;
+    align-items: stretch;
+    z-index: 100;
+    flex-direction: column;
+    backdrop-filter: blur(2px);
+    align-content: space-between;
+    flex-wrap: wrap;
+    min-width: 280px;
+}
+
+.playlist-item {
+    min-width: 280px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#playlist button {
+    background: #00000069;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+canvas {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: -5;
+    min-width: 100%;
+    min-height: 100%;
+    aspect-ratio: 198/108;
+    filter: blur(1.5px) brightness(0.7);
+}
+
+
+.player-backdrop * {
+    z-index: -5;
+    min-width: 100%;
+    min-height: 100%;
+    aspect-ratio: 198/108;
+    filter: blur(1.5px) brightness(0.7);
+}
+
+.controls .button {
+    border: none;
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 0px;
+    color: white;
+    background: transparent;
+    height: 20px;
+    font-size: 30px;
+    position: relative;
+    bottom: 15px;
+}
+
+.controls #time {
+    width: stretch;
+    margin-left: 10px;
+}
+
+.controls #spd {
+    width: 80px;
+    margin-left: 10px;
+}
+
+#spd::before {
+    content: "Speed";
+    width: 80px;
+    text-align: center;
+    bottom: 30px;
+    position: fixed;
+    color: white;
+}
+
+.player-div {
+    z-index: 10;
+    padding: 60px 40px 40px 40px;
+    min-width: 600px;
+    border-radius: 15px;
+}
+
+.aero {
+    background: linear-gradient(0deg, rgba(102, 153, 170, 0.192)), 
+                linear-gradient(0deg, #fff0 0%, #8af2 100%),
+                repeating-linear-gradient(60deg, #fff0 10px, #fff2 15px, #fff2 30px, #fff0 35px, #fff0 80px, #fff2 85px, #fff2 130px, #fff0 135px, #fff0 200px, #fff2 205px, #fff2 270px, #fff0 275px, #fff0 300px, #fff2 305px, #fff2 345px, #fff0 350px 400px),
+                linear-gradient(0deg, rgba(102, 153, 170, 0.719), transparent),
+                linear-gradient(180deg, #ffffffa8 20px, #fff0 80px),
+                radial-gradient(circle farthest-side at bottom, #fff0 100%, #fff4 103%, #fff2 125%);
+    backdrop-filter: blur(4px);
+    box-shadow: inset 0px 0px 0px 1px #fff9, 
+                inset 0px 0px 15px 1px #fff9,  
+                2px 2px 12px 3px #0009;
+    border: rgb(7, 17, 37) 1px solid;
+}
+
+#show {
+    border: none;
+    background: #0005;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    border-radius: 15px;
+    padding: 8px 15px;
+    color: white;
+}
