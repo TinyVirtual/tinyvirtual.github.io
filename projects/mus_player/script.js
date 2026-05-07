@@ -183,7 +183,7 @@ async function playlist_play() {
         dom.artist.textContent = audio.tags.artist + " - " + audio.tags.album
         dom.date.textContent = audio.tags.year + " - " + audio.tags.genre
 
-        await new Promise(r => setTimeout(r,100))
+        await new Promise(r => setTimeout(r,2000))
         console.log(au_el.duration)
         let t = dom.time, tv = dom.time_display
         while(au_el && au_el.currentTime < (au_el.duration-0.5)){
@@ -192,7 +192,7 @@ async function playlist_play() {
             tv.textContent = String(Math.floor(au_el.currentTime / 60)).padStart(2, "0") +":"+ String(Math.round(au_el.currentTime %60)).padStart(2, "0")
         }
 
-        au_el.remove()
+        setTimeout(au_el.remove,100)
         dom.skip.removeEventListener("click",handlers.skip)
         dom.spd.removeEventListener("change",handlers.spd)
         dom.time.removeEventListener("change",handlers.time)
@@ -208,14 +208,11 @@ async function playlist_play() {
 dom.input.addEventListener("change", async (e) => {
 
     dom.input.parentNode.hidden = true
-    covers = []
-    playlist = []
-    let au_old = document.querySelector("audio")
-    if(au_old){
-        au_old.remove()
-    }
+    covers = [];
+    playlist = [];
+    
 
-    ["skip", "spd", "time", "pause"].forEach(id => {
+    (["skip", "spd", "time", "pause"]).forEach(id => {
         let _el = dom[id];
         let _clone = _el.cloneNode(true);
         _el.replaceWith(_clone);
@@ -304,12 +301,12 @@ dom.input.addEventListener("change", async (e) => {
                 console.warn(err)
             }
         })
-        await new Promise(r=>setTimeout(r,50))
+        await new Promise(r=>setTimeout(r,500))
     }
 
     setInterval(()=>{
         loop()
-    },10)
+    },100)
 
     await new Promise(r=>setTimeout(r,5))
 
@@ -333,7 +330,7 @@ dom.input.addEventListener("change", async (e) => {
                 canvas_dat.x = -60
                 canvas_dat.y+=150
             }
-            await new Promise(r=>setTimeout(r,5))
+            await new Promise(r=>setTimeout(r,50))
         };
     }
 
