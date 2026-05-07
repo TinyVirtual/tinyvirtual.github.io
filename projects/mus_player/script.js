@@ -145,7 +145,7 @@ async function playlist_play() {
         dom.music.appendChild(au_el)
         au_el.preservesPitch = !1
         au_el.playbackRate = dom.spd.value
-        dom.pause.textContent = au_el.paused?"▶":"❙ ❙"
+        dom.pause.textContent = au_el.paused?"▶":"❙❙"
 
         
         let handlers = {
@@ -157,7 +157,7 @@ async function playlist_play() {
                 },
             pause: ()=>{
                     au_el.paused? au_el.play(): au_el.pause()
-                    dom.pause.textContent = au_el.paused?"▶":"❙ ❙"
+                    dom.pause.textContent = au_el.paused?"▶":"❙❙"
                 },
             skip: ()=>{
                     au_el.currentTime = au_el.duration
