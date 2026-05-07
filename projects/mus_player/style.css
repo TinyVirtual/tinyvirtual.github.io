@@ -228,5 +228,8 @@ canvas {
     }
     body {
         background: url("https://img.wallpapic.com/i3537-915-79/medium/windows-vista-blue-green-light-wallpaper.jpg");
+        background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
     }
 }
