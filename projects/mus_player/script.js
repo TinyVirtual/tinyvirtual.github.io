@@ -348,4 +348,4 @@ dom.input.addEventListener("change", async (e) => {
 
 document.getElementById("show").addEventListener("click",()=>{
   document.getElementById("playlist").hidden = !document.getElementById("playlist").hidden
-}
+})
