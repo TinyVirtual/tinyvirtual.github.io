@@ -304,10 +304,13 @@ dom.input.addEventListener("change", async (e) => {
         await new Promise(r=>setTimeout(r,500))
     }
 
-    setInterval(()=>{
-        loop()
-    },100)
-
+    if(!navigator.appVersion.includes("Android")){
+        setInterval(()=>{
+            loop()
+        },100)
+    } else {
+        document.querySelector("canvas")?.remove()
+    };
     await new Promise(r=>setTimeout(r,5))
 
     try {
