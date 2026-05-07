@@ -218,3 +218,15 @@ canvas {
     padding: 8px 15px;
     color: white;
 }
+
+@media (max-width: 540px) {
+    .mus-content-div {
+        flex-direction: column;
+    }
+    .music-content {
+        align-items: center;
+    }
+    body {
+        background: url("https://img.wallpapic.com/i3537-915-79/medium/windows-vista-blue-green-light-wallpaper.jpg");
+    }
+}
