@@ -7,8 +7,8 @@ let dom = {},
     ],
     covers = [],
     dims = {
-        width: document.documentElement.offsetWidth,
-        height: document.documentElement.offsetHeight,
+        width: document.documentElement.getBoundingClientRect().width+50,
+        height: document.documentElement.getBoundingClientRect().height+50,
         step: 150,
     }
     dims.aval_w = Math.ceil(dims.width/dims.step)
