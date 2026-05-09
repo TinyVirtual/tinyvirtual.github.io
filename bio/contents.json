@@ -15,7 +15,6 @@
         "socials":[
             "Currently supported platforms:",
             "Youtube, Tiktok, Instagram, Facebook, Gmail, Linkedin, PlayStation, Spotify, Nintendo, Github, Twitch, Discord, Roblox, Xbox, Steam, NameMC, X",
-            "You must put the id as the platform name all lower case with the sufix '_card'",
             {
                 "name":"Youtube",
                 "link":"https://www.youtube.com/@tinyvirtual"
@@ -107,8 +106,7 @@
                 "contents":[
                     "Englsih - Experienced",
                     "[Brazilian] Portguese - Fluent",
-                    "Spanish - Low Knowledge",
-                    "Japanese - Early Learning"
+                    "Spanish - Low Knowledge"
                 ]
             }
         ],
@@ -224,10 +222,13 @@
             "Aroace: Not being atracted romantically or sexually to a gender, Unable to feel romantic or sexual love, Desire to not enter in a relationship;",
             "Agender: Not fitting inside a gender, not being able to recognize yourself in a specific gender.",
             "<br>",
-            "i got several injuries to my head, i feel head first from a tree house twice, broke a thick chocolate brick with my head, i trew a hoose metal trigger into my forehead, etc...",
+            "also minecraft is probably my hyperfocus lol",
+            "i have asthma, rhinitis, a lot of allergies and i almost died when i born",
             "<br>",
             "also, my religion is Spiritism",
             "i am a very meat enthusiast, my diet is basically meat, I LOVE MEAT (im sorry vegans)",
+            "(except i dont eat fish or sea stuff, i am allergic)",
+            "<br>",
             "i also have 2 years of delayed body development, which means that even though if i am 17, i look like, behave like and acts like 15",
             "<br>",
             "also i am very silly usually, but sometimes i get depressive ;-;"
@@ -257,11 +258,9 @@
     ],
     "status":{
         "type":"random",
+        "enabled":true,
         "source":[
-            ":3",
-            "so lonely 😭",
-            "i wanna money",
-            "hotdogs are yummy"
+            "🩵 I love the cold and rainy days ^^"
         ]
     }
 }
