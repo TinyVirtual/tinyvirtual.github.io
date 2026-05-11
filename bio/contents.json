@@ -257,7 +257,7 @@
         }
     ],
     "status":{
-        "type":"random",
+        "type":"text",
         "enabled":true,
         "source":"\ud83e\ude75 I love the cold and rainy days ^^"
     }
