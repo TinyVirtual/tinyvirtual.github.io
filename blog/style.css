@@ -442,3 +442,25 @@ span.selector-span {
 #share_button:hover {
     color: #3636cf;
 }
+
+
+table {
+    border-spacing: 0px;
+    border: 1px solid black;
+    margin: 5px 20px;
+        
+    th {
+        border: 1px solid black;
+        padding: 5px 18px;
+    }
+    table {
+        border-spacing: 0px;
+        border: 1px solid black;
+    }
+    td {
+        border: 1px solid black;
+    }
+    thead {
+        background: #777;
+    };
+}
