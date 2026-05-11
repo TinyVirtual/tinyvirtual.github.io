@@ -296,7 +296,8 @@ img.creations-img {
     width: 320px;
     border-radius: 15px;
     margin: 10px;
-    aspect-ratio: 1/1;
+    height: 320px;
+    object-fit: cover;
 }
 
 .creations-box {
