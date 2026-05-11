@@ -259,8 +259,6 @@
     "status":{
         "type":"random",
         "enabled":true,
-        "source":[
-            "🩵 I love the cold and rainy days ^^"
-        ]
+        "source":"\ud83e\ude75 I love the cold and rainy days ^^"
     }
 }
