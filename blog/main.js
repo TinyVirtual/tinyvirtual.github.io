@@ -168,7 +168,7 @@ async function load_post(id){
                 .replaceAll("$PFP", _json.publisher.pfp)
                 .replaceAll("$USER", _json.publisher.name)
                 .replaceAll("$TITLE", _json.title)
-                .replaceAll("$CONTENT", !!marked ? marked.parse(_json.contents.join("\n\n")) : _json.contents.join("\n"))
+                .replaceAll("$CONTENT", !!marked ? marked.parse(_json.contents.join("\n")) : _json.contents.join("\n"))
                 .replaceAll("$DATE", new Date(_json.date).toLocaleTimeString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }))
                 .replaceAll("$USRPAGE",`?user=${_json.publisher.username}`)
             let post_element = elementFromXml(post_html)
@@ -274,7 +274,7 @@ async function load_page(page,max=10){
                         .replaceAll("$SOURCE",i.avatar)
                         .replaceAll("$DISPLAYNAME",i.display_name)
                         .replaceAll("$USERNAME",i.username)
-                        .replaceAll("$CONTENTS", !!marked ? marked.parse(i.bio.join("\n\n")) : `<a>${i.bio.join("<br>")}</a>`)
+                        .replaceAll("$CONTENTS", !!marked ? marked.parse(i.bio.join("\n")) : `<a>${i.bio.join("<br>")}</a>`)
                     }
 
                     box = box.replaceAll("$USERS",users_elements.join("\n"))
@@ -299,7 +299,7 @@ async function load_page(page,max=10){
                 })
 
                 containers.content().innerHTML = presets.privacy
-                    .replaceAll("$CONTENT",marked.parse(privacy_text.terms.join("\n\n")))
+                    .replaceAll("$CONTENT",marked.parse(privacy_text.terms.join("\n")))
                     .replaceAll("$UPDATED",new Date(privacy_text.updated).toLocaleTimeString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }))
 
                 } catch(e) {
@@ -341,7 +341,7 @@ async function load_user(username) {
                         .replaceAll("$SOURCE",i.avatar)
                         .replaceAll("$DISPLAYNAME",i.display_name)
                         .replaceAll("$USERNAME",i.username)
-                        .replaceAll("$CONTENTS", !!marked ? marked.parse(i.bio.join("\n\n")) : `<a>${i.bio.join("<br>")}</a>`)
+                        .replaceAll("$CONTENTS", !!marked ? marked.parse(i.bio.join("\n")) : `<a>${i.bio.join("<br>")}</a>`)
 
         
     } catch(e) {
