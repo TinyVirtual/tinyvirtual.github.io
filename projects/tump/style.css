@@ -331,10 +331,6 @@ canvas {
 background-position: center;
 background-repeat: no-repeat;
     }
-    #rotating_disk[playing] {
-        top: 180px;
-        left: 210px;
-    }
 }
 
 #rotating_disk {
