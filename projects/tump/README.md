@@ -1,6 +1,6 @@
 (wip)
 
-# TUAMP: Tiny's Untitled Aero Music Player 
+# $${ \color{#22E7DF} \textsf{TUAMP: Tiny's Untitled Aero Music Player} }$$
 This is a music player that I've been working on recently.
 It is heavily inspired by [Frutiger aero](https://en.wikipedia.org/wiki/Frutiger_Aero) and [Windows Media Center](https://en.wikipedia.org/wiki/Windows_Media_Center)
 
@@ -16,9 +16,9 @@ It currently features:
 - Playback controllers
 - Mobile support (kinda)
 - Speed changes pitch
-- --Playlist importing--[^1]
-- --Cool effects--[^1]
-- --Playlist Exporting--[^1]
+- <del>Playlist importing</del>[^1]
+- <del>Cool effects</del>[^1]
+- <del>Playlist Exporting</del>[^1]
 
 
 You can check it out [here](https://tinyvirtual.github.io/projects/tump)
