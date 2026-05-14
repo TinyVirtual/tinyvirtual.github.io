@@ -246,7 +246,6 @@ canvas {
     height: 20px;
     font-size: 30px;
     position: relative;
-    bottom: -3px;
 }
 
 .controls #time {
