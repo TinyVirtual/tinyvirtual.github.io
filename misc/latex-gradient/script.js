@@ -35,14 +35,14 @@ dom.generate.addEventListener("click",()=>{
         let mypos = sub/text.length,
         mycols = [Math.floor(mypos*(colors.length-1)), Math.min( Math.floor(mypos*(colors.length-1))+1,colors.length-1)],
         mystep = (mypos*(colors.length-1))%1
-        if(text[sub]=="0x20"){
+        if(text[sub]=="\x20"){
             text[sub] = " \\space "
         }
     
         
         //console.log(`${mypos}; ${JSON.stringify(mycols)}; ${mystep}`)
         
-        text[sub] = "\\color{#"
+        text[sub] = "\\sf \\color{#"
         +Math.round(lerp(colors[mycols[0]].red,colors[mycols[1]].red,mystep)).toString(16).padStart(2,"0")
         +Math.round(lerp(colors[mycols[0]].grn,colors[mycols[1]].grn,mystep)).toString(16).padStart(2,"0")
         +Math.round(lerp(colors[mycols[0]].blu,colors[mycols[1]].blu,mystep)).toString(16).padStart(2,"0")
