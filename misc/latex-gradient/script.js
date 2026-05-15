@@ -48,7 +48,7 @@ dom.generate.addEventListener("click",()=>{
         +Math.round(lerp(colors[mycols[0]].blu,colors[mycols[1]].blu,mystep)).toString(16).padStart(2,"0")
         +"}"+text[sub]
         
-        pre_result_html += text[sub].replace("\\sf \\color{","<a style=\"color: ").replace("}","\">") + "</a>"
+        pre_result_html += text[sub].replace("\\sf \\color{","<a style=\"color: ").replace("}","\">").replace(" \\space "," ") + "</a>"
     }
     
     the_text = pre_result.replace("$%s0", text.join(""))
