@@ -354,8 +354,8 @@ canvas {
 
     }
     .top-buttons{ 
-        left: 20px;
-    transform: translateY(-45px);
+        left: 0px;
+        transform: translateY(-65px);
         button {
             max-width: 25%;
         }
