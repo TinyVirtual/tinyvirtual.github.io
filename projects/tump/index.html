@@ -4,6 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TUAMP</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./assets/icon.png">
+    <meta property="og:title" content="TUAMP">
+    <meta property="og:site_name" content="Tiny's Untitled Aero Music Player">
+    <meta property="og:description" content="This is a Frutiger Aero themed music player made by TinyVirtual">
     <script src="https://cdn.jsdelivr.net/npm/jsmediatags/dist/jsmediatags.min.js"></script>
     
 </head>
@@ -19,8 +23,8 @@
             <img id="cover" src="./assets/music_placeholder.jpg" alt="">
             <div class="music-content">
                 <h1 id="title" class="player-text">Title</h1>
-                <h2 id="artist" class="player-text">Unknown Artist - Unknown Album</h2>
-                <p id="date">Unknown Year - Unknown Genre</p>
+                <h2 id="artist" class="player-text">...</h2>
+                <p id="date">...</p>
             </div>
         </div>
         <div class="controls">
@@ -41,9 +45,7 @@
         <p id="backdrop_alert">Also, the canvas backdrop along with the blur is really laggy, in case you want to disable for more performance...</p>
         <button class="aero-button" id="disable_canvas">Disable canvas</button>
         <p>To start, select a folder containing music with metadata</p>
-        <button hidden="" id="mobile_fullscreen">
-            Click to enter full-screen
-        </button>
+        
         <label>Select folder</label>
         <button id="input_button" class="aero-button">Select Folder</button>
         <input id="input" type="file" webkitdirectory="" multiple="" hidden="">
@@ -52,6 +54,9 @@
     <div class="selector aero welcome right-pannel-extreme" -is-active="false" id="about_div"><h1>Welcome to TUAMP <icon></icon></h1>
         <p>TUAMP = Tiny's Unnamed Aero Media player</p>
         <p iswarning="">This is a early beta, please expect bugs and memory issues</p>
+        <button class="aero-button" hidden="" id="mobile_fullscreen">
+            Click to enter full-screen
+        </button>
         
         <p>This is a music player that I've been working on recently.</p>
         <p>It is heavily inspired by <a href="https://en.wikipedia.org/wiki/Frutiger_Aero">Frutiger Aero</a> and <a href="https://en.wikipedia.org/wiki/Windows_Media_Center">Windows Media Center</a></p>
