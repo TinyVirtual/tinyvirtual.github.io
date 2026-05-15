@@ -1,0 +1,55 @@
+body {
+        font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", system-ui, sans-serif;
+        margin: 0px;
+}
+
+h1#title {
+        color: #fff0;
+        background: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f);
+        background-clip: text;
+        width: max-content;
+        filter: drop-shadow(#0009 0px 0px 2px);
+}
+
+header {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       background: #d4d4d4;
+}
+      
+.center {
+        display: flex;
+        flex-direction: column;
+        margin: 4px;
+        align-items: center;
+        
+        button {
+            border-radius: 15px;
+            padding: 8px 18px;
+            border: 00px solid #0000;
+            background: #3bca7b;
+        }
+        
+        input[type="text"], textarea {
+            background: #d9d9d9;
+            border-radius: 15px;
+            border: 1px solid #333;
+            min-height: 1.8em;
+        }
+        
+        textarea {
+            resize: none;
+            width: 75vw;
+            height: 14em;
+        }
+        
+        #preview {
+            width: 80vw;
+            min-height: 2em;
+            background: #aaa;
+            border: 1px solid #000;
+            border-radius: 15px;
+            padding: 10px;
+        }
+}
