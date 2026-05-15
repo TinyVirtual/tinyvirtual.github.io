@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUAMP</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsmediatags/dist/jsmediatags.min.js"></script>
+    
+</head>
+<body>
+    <div id="alert_div"><div id="alert" class="aero">Loading...</div>
+    </div>
+    <div class="player-backdrop">
+        <canvas id="canvas" width="990" height="540"></canvas>
+    </div>
+    <div class="player-div">
+        <div class="mus-content-div">
+            <img src="./assets/rotating.png" id="rotating_disk">
+            <img id="cover" src="./assets/music_placeholder.jpg" alt="">
+            <div class="music-content">
+                <h1 id="title" class="player-text">Title</h1>
+                <h2 id="artist" class="player-text">Unknown Artist - Unknown Album</h2>
+                <p id="date">Unknown Year - Unknown Genre</p>
+            </div>
+        </div>
+        <div class="controls">
+            <a id="time_display">00:00</a>
+            <button id="rewind" class="button icon"></button>
+            <button id="pause" class="button icon"></button>
+            <button id="skip" class="button icon"></button>
+            <input id="time" type="range" min="0" max="100" step="0.01" value="0">
+            <input id="spd" type="range" min="0.8" max="1.5" step="0.1" value="1">
+        </div>
+    </div>
+    <div class="selector aero welcome"><h1>Welcome to TUAMP <icon></icon></h1>
+        <p>TUAMP = Tiny's Unnamed Aero Media player</p>
+        <p iswarning="">This is a early beta, please expect bugs and memory issues</p>
+        
+        <p>This is a project inspired by <a href="https://en.wikipedia.org/wiki/Windows_Media_Center">Windows Media Center</a> music player, because I was messing arround with a windows 7 virtual machine and decided to give it a try, and when I saw it, I really liked, except for the fact that it got discontinuated, does not support files like ogg or m4a, and it really mess with the album covers, which is kinda lame, and in a attempt to find an alternative, I couldn't find anything like I wanted, so I did what every person would do: cry. After crying, I decided to make a mini version of it because I can :3</p>
+        <p>It's recommended for you to put metadata in your music, you can use mp3tag or automatag</p>
+        <p id="backdrop_alert">Also, the canvas backdrop along with the blur is really laggy, in case you want to disable for more performance...</p>
+        <button class="aero-button" id="disable_canvas">Disable canvas</button>
+        <p>To start, select a folder containing music with metadata</p>
+        <label>Select folder</label>
+        <button id="input_button" class="aero-button">Select Folder</button>
+        <input id="input" type="file" webkitdirectory="" multiple="" hidden="">
+    </div>
+    
+    <div class="selector aero welcome right-pannel-extreme" -is-active="false" id="about_div"><h1>Welcome to TUAMP <icon></icon></h1>
+        <p>TUAMP = Tiny's Unnamed Aero Media player</p>
+        <p iswarning="">This is a early beta, please expect bugs and memory issues</p>
+        
+        <p>This is a music player that I've been working on recently.</p>
+        <p>It is heavily inspired by <a href="https://en.wikipedia.org/wiki/Frutiger_Aero">Frutiger Aero</a> and <a href="https://en.wikipedia.org/wiki/Windows_Media_Center">Windows Media Center</a></p>
+        <br>
+        <p>it all started with me some while ago trying out Windows 7 in a virtual machine some weeks ago, because i wanted to see how it is to use Win7 in 2026, and i accidentally stumbled upon windows media center, and i really liked the vibe, so i extracted to my main machine and loaded my files, and it was very cool, but it had a issue, it was glitchy, the metadata wasn't correctly loading, only one album cover per folder, _unstable_, etc...</p>
+        <br>
+        <p>then i tried searching online ogg codecs and a way to make covers load correctly, or even an alternative, but failed miserably, and with no options left... i decided to pull up my secret card: i cried ;-;</p>
+        <br>
+        <p>after crying, i decided to mess arround with aero style and made the album cover wall, and then i made a little player to make it more immersive</p>
+        <br>
+        <p>It currently features:
+            <ul>
+                <li>Folder importing</li>
+                <li>The amazing cover wall</li>
+                <li>Playback controllers</li>
+                <li>Mobile support (kinda)</li>
+                <li>Speed changes pitch</li>
+                <li>Playlist importing</li>
+                <li>Cool effects</li>
+                <li>Playlist Exporting</li>
+            </ul>
+        </p>
+        <br>
+        <p>Also you can find the source <a href="https://github.com/TinyVirtual/tinyvirtual.github.io/tree/main/projects/tump">here</a></p>
+    </div>
+    <div class="top-buttons">
+        <button id="show" class="aero"><icon></icon> Tracks</button>
+        <button id="about" class="aero"><icon></icon> About</button>
+        <button id="folder_change" class="aero"><icon></icon> Change Folder</button>
+        <button id="list_change" class="aero"><icon></icon> Change Playlist</button>
+    </div>
+    <div class="selector aero" id="playlist" -is-active="false">
+        <p>Playlist is empty</p>
+    </div>
+    <div class="selector aero right-pannel" id="playlist_selector" -is-active="false">
+
+    </div>
+    <div id="music">
+        <audio id="audio_el" preload="auto" src=""></audio></div>
+    <script src="script.js"></script>
+
+
+</body></html>
