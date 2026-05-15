@@ -361,6 +361,14 @@ dom.folder_change.addEventListener("click",()=>{
     dom.input.click();
 })
 
+dom.fullscr = document.getElementById("mobile_fullscreen")
+if(performanceProfile.mobile){
+    dom.fullscr.hidden = false
+    dom.fullscr.addEventListener("click",()=>{
+        document.documentElement.requestFullscreen()
+    })
+}
+
 dom.input_button.addEventListener("click",()=>{dom.input.click()})
 
 dom.input.addEventListener("change", async (e) => {
