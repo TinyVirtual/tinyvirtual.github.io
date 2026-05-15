@@ -1,0 +1,80 @@
+<html>
+   <head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .center {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>post maker</h1>
+    </header>
+    <section>
+      <h4>lazy made</h4>
+      <br>
+      <div class="center">
+        <label>title</label>
+        <input type="text" id="title">
+        <br>
+        <label>publisher</label>
+        <input type="text" id="publisher">
+        <br>
+        <label>image link</label>
+        <br>
+        <input type="text" id="img_src">
+        <br>
+        <label>contents</label>
+        <textarea style="width:250px;height:300px;" id="contents"></textarea>
+        <button id="button">generate</button>
+      </div>
+    </section>
+    <script>
+      
+    
+      document.getElementById("button").addEventListener("click",(async()=>{
+        let doc = {
+          title: document.getElementById("title").value,
+          publisher: {
+            username: document.getElementById("publisher").value,
+            name: document.getElementById("publisher").value,
+            pfp: "https://i.pinimg.com/originals/f6/d5/b4/f6d5b458bf7aa0276c81a666c916de18.jpg?nii=t"
+          },
+          date: (new Date()).toISOString()
+            .replace("T"," ")
+            .replace("Z"," GMT"+(((new Date()).getTimezoneOffset()/60)*-1))
+            .replace(/[.]\d\d\d/gm,""),
+          contents: document.getElementById("contents").value.split("\n"),
+          image: document.getElementById("img_src").value
+        }
+        
+        try {
+            let __json = await fetch("https://raw.githubusercontent.com/TinyVirtual/tinyvirtual.github.io/refs/heads/main/blog/extra/users.json")
+            if(__json.ok){
+                __json = await __json.json()
+            }
+            
+            for(let o of __json.users){
+                if(o.username == doc.publisher.username){
+                    doc.publisher.name = o.display_name
+                    doc.publisher.pfp = o.avatar
+                }
+            }
+            
+        } catch(e) {
+            alert("An error occured: "+e.message)
+        }
+        
+        navigator.clipboard.writeText(JSON.stringify(doc))
+        
+      }))
+    </script>
+  </body>
+</html>
