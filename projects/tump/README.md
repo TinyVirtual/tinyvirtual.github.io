@@ -16,9 +16,9 @@ It currently features:
 - Playback controllers
 - Mobile support (kinda)
 - Speed changes pitch
-- <del>Playlist importing</del>[^1]
-- <del>Cool effects</del>[^1]
-- <del>Playlist Exporting</del>[^1]
+- Playlist importing
+- Cool effects
+- Playlist Exporting
 
 
 You can check it out [here](https://tinyvirtual.github.io/projects/tump)
