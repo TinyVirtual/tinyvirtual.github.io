@@ -30,11 +30,15 @@ dom.generate.addEventListener("click",()=>{
         }
     })
     
-    let pre_result = "$${ \\textsf{ $%s0 }}$$", pre_result_html = ""
+    let pre_result = "$${ $%s0 }$$", pre_result_html = ""
     for(let sub in text){
         let mypos = sub/text.length,
         mycols = [Math.floor(mypos*(colors.length-1)), Math.min( Math.floor(mypos*(colors.length-1))+1,colors.length-1)],
         mystep = (mypos*(colors.length-1))%1
+        if(text[sub]=="0x20"){
+            text[sub] = " \\space "
+        }
+    
         
         //console.log(`${mypos}; ${JSON.stringify(mycols)}; ${mystep}`)
         
@@ -44,7 +48,7 @@ dom.generate.addEventListener("click",()=>{
         +Math.round(lerp(colors[mycols[0]].blu,colors[mycols[1]].blu,mystep)).toString(16).padStart(2,"0")
         +"}"+text[sub]
         
-        pre_result_html += text[sub].replace("\\color{","<a style=\"color: ").replace("}","\">") + "</a>"
+        pre_result_html += text[sub].replace("\\sf \\color{","<a style=\"color: ").replace("}","\">") + "</a>"
     }
     
     the_text = pre_result.replace("$%s0", text.join(""))
