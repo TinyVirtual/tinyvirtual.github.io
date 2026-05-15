@@ -30,7 +30,7 @@ dom.generate.addEventListener("click",()=>{
         }
     })
     
-    let pre_result = "$${ \textsf{ $%s0 }}$$", pre_result_html = ""
+    let pre_result = "$${ \\textsf{ $%s0 }}$$", pre_result_html = ""
     for(let sub in text){
         let mypos = sub/text.length,
         mycols = [Math.floor(mypos*(colors.length-1)), Math.min( Math.floor(mypos*(colors.length-1))+1,colors.length-1)],
