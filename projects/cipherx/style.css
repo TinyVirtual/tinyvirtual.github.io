@@ -181,7 +181,7 @@ p#info {
     a:hover {
         background: #0f0;
         color: #000;
-        cursor: url("/assets/img/cur_pointer.png") 7 1, pointer;
+        cursor: url("./assets/img/cur_pointer.png") 7 1, pointer;
     }
     a:active {
         background: #000;
