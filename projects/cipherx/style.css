@@ -1,6 +1,6 @@
 @font-face {
     font-family: FixedSYS;
-    src: url("/assets/fonts/fixedsys.ttf");
+    src: url("./assets/fonts/fixedsys.ttf");
 }
 
 p {
@@ -10,7 +10,7 @@ p {
 a {color: #0F0;}
 
 html, body {
-    cursor: url(/assets/img/cursor.png), auto;
+    cursor: url("./assets/img/cursor.png"), auto;
     height:stretch;
     margin: 0px 8px;
 }
@@ -106,7 +106,7 @@ red {
 }
 
 textarea, .output-box {
-    cursor: url("/assets/img/cur_text.png") 9 13, text;
+    cursor: url("./assets/img/cur_text.png") 9 13, text;
     font-size: 1em;
     width: 40em !important;
     height: 15em !important;
@@ -137,7 +137,7 @@ button:hover {/*
     outline: #0F0 solid;*/
     background: #0f0;
     color: #000;
-    cursor: url("/assets/img/cur_pointer.png") 7 1, pointer;
+    cursor: url("./assets/img/cur_pointer.png") 7 1, pointer;
 }
 button:active {
     background: #000;
