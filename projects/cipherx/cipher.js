@@ -394,6 +394,10 @@ els.oper.appendChild(els.oper_dec);
     a.setAttribute("on","")
 });
 
+/*     
+Remove reason: doesn't make any sense this tool have music
+
+
 let mus = new Audio()
 mus.src = "https://lambda.vgmtreasurechest.com/soundtracks/earthbound-snes/rzalasyymt/119%20Kraken%20of%20the%20Sea.mp3"
 mus.loop = true
@@ -408,6 +412,8 @@ document.getElementById("music").addEventListener("click",()=>{
 })
 
 //setTimeout(()=>{document.getElementById("music").click()},200)
+*/
+document.getElementById("music")?.remove();
 
 
 for(let type in options){
