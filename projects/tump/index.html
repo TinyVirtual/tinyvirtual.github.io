@@ -8,7 +8,14 @@
     <meta property="og:title" content="TUAMP">
     <meta property="og:site_name" content="Tiny's Untitled Aero Music Player">
     <meta property="og:description" content="This is a Frutiger Aero themed music player made by TinyVirtual">
+
+    <!-- MP3 -->
     <script src="https://cdn.jsdelivr.net/npm/jsmediatags/dist/jsmediatags.min.js"></script>
+    <!-- Universal -->
+    <script type="module">
+      import { parseBlob } from 'https://cdn.jsdelivr.net/npm/music-metadata@11.12.3/+esm'
+      window.musicMetadata = parseBlob
+    </script>
     
 </head>
 <body>
