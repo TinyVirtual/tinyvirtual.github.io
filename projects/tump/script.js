@@ -8,7 +8,7 @@ let dom = {},
         "input", "spd", "rewind", "skip", "audio_el",
         "disable_canvas","backdrop_alert","input_button",
         "rotating_disk", "alert", "folder_change", "about",
-        "list_change"
+        "list_change", "hide_button"
     ],
     covers = [],
     dims = {
@@ -301,7 +301,11 @@ async function playlist_play() {
                     }
                 }
         }
+        handlers.pauseKey = e=>{
+            if(e.code === 'Space'){handlers.pause()}
+        }
 
+        document.addEventListener("keydown",handlers.pauseKey)
 
         dom.spd.addEventListener("change",handlers.spd)
         dom.time.addEventListener("change",handlers.time)
@@ -328,6 +332,7 @@ async function playlist_play() {
                 dom.spd.removeEventListener("change",handlers.spd)
                 dom.time.removeEventListener("change",handlers.time)
                 dom.pause.removeEventListener("click",handlers.pause)
+                document.removeEventListener("click",handlers.pauseKey)
                 dom.rewind.removeEventListener("click",handlers.rewind)
                 return
             }
@@ -344,7 +349,7 @@ async function playlist_play() {
         dom.rewind.removeEventListener("click",handlers.rewind)
 
         if(a+1==playlist.length){
-            a=0
+            a=-1 // due to the a++ in the for, it will increment, so will skip first
         } 
     }
 }
@@ -356,8 +361,9 @@ dom.disable_canvas.addEventListener("click",()=>{
 })
 
 dom.folder_change.addEventListener("click",()=>{
-    playlist_el.setAttribute("-is-active","false");
-    document.getElementById("playlist_selector").setAttribute("-is-active","false");
+    document.getElementById("about_div").setAttribute("-is-active","false")
+    document.getElementById("playlist").setAttribute("-is-active","false")
+    document.getElementById("playlist_selector").setAttribute("-is-active","false")
     dom.input.click();
 })
 
@@ -386,8 +392,8 @@ dom.input.addEventListener("change", async (e) => {
     renderPlaylist()
 
     dom.cover.src = "./assets/music_placeholder.jpg"
-    dom.title.textContent = "Loading..."
-    dom.artist.textContent = "Loading..."
+    dom.title.textContent = (Math.random()>0.075)?"Loading...":"Evil loading..."
+    dom.artist.textContent = "Londing..."
     dom.date.textContent = "Also Loadign..."; //this is a purposely mispeled, and this coment too lol XD
     
 
@@ -422,6 +428,14 @@ dom.input.addEventListener("change", async (e) => {
         f.type.startsWith("audio")
     );
 
+    var __u = []; // filtering repeated covers
+    covers.filter(r=>{
+        if (__u.includes(r)){ 
+            return false 
+        } else {
+            __u.push(r); return true
+        }
+    })
 
     if(files.length > 200){
         if(other_playlists.length){
@@ -631,17 +645,34 @@ dom.input.addEventListener("change", async (e) => {
 
 document.getElementById("show").addEventListener("click",()=>{
   playlist_el = document.getElementById("playlist")
+  dom.hide_button.setAttribute("-is-active",playlist_el.getAttribute("-is-active")=="false")
   playlist_el.setAttribute("-is-active",playlist_el.getAttribute("-is-active")=="false")
+    
   document.getElementById("playlist_selector").setAttribute("-is-active","false")
+  document.getElementById("about_div").setAttribute("-is-active","false")
 })
 
 document.getElementById("list_change").addEventListener("click",()=>{
   playlist_el = document.getElementById("playlist_selector")
+  dom.hide_button.setAttribute("-is-active",playlist_el.getAttribute("-is-active")=="false")
   playlist_el.setAttribute("-is-active",playlist_el.getAttribute("-is-active")=="false")
+    
   document.getElementById("playlist").setAttribute("-is-active","false")
+  document.getElementById("about_div").setAttribute("-is-active","false")
 })
 
 dom.about.addEventListener("click",()=>{
     let div = document.getElementById("about_div")
+    dom.hide_button.setAttribute("-is-active",div.getAttribute("-is-active")=="false")
     div.setAttribute("-is-active",div.getAttribute("-is-active")=="false")
+    
+    document.getElementById("playlist").setAttribute("-is-active","false")
+    document.getElementById("playlist_selector").setAttribute("-is-active","false")
+})
+
+dom.hide_button.addEventListener("click",()=>{
+    document.getElementById("about_div").setAttribute("-is-active","false")
+    document.getElementById("playlist").setAttribute("-is-active","false")
+    document.getElementById("playlist_selector").setAttribute("-is-active","false")
+    dom.hide_button.setAttribute("-is-active","false")
 })
