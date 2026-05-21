@@ -517,3 +517,28 @@ button.export {
 }
 
 
+button#hide_button {
+    position: fixed;
+    z-index: 999;
+    color: white;
+    text-shadow: 0 0 5px #353535,  0 0 5px #353535;
+    padding: 8px 12px;
+    border-radius: 1em;
+    transition: 1s;
+    right: 10px;
+    transform: translateY(-225px);
+}
+
+button#hide_button[-is-active="false"] {
+    transform: translateX(105vw) translateY(-225px);
+}
+
+@media (max-height: 685px) {
+    button#hide_button {
+            transform: translateY(225px);
+    }
+    
+    button#hide_button[-is-active="false"] {
+        transform: translateX(105vw) translateY(225px);
+    }
+}
