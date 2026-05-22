@@ -11,6 +11,7 @@ let dom = {},
         "list_change", "hide_button"
     ],
     covers = [],
+    
     dims = {
         width: 1980/2,
         height: 1280/2,
@@ -48,7 +49,7 @@ let performanceProfile = {
 
 let minidata = {
     canvas_enabled: !performanceProfile.mobile,
-    version: "0.0.3",
+    version: "0.1.0",
 }
 dom.disable_canvas.textContent = minidata.canvas_enabled?"Disable canvas":"Enable canvas"
 if(performanceProfile.mobile){
@@ -89,6 +90,63 @@ function loop(){
         }
     }
 }
+
+function getMetadata(file) {
+    let pl_url = URL.createObjectURL(file)
+    let insert = {
+        url: pl_url,
+        name: file.name,
+        path: file.webkitRelativePath,
+        tags: {
+            title: file.name,
+            artist: "Unknown Artist",
+            album: "Unknown Album",
+            year: "Unknown Year",
+            genre: "Unknown Genre"
+        },
+        cover: `./assets/music_placeholder.jpg`,
+    }
+    musicmetadata(file, function (err, result) {
+        dom.alert.textContent = "Loading "+file.name
+        //console.log(result);
+        if(err){
+            dom.alert.textContent += " Fail!"
+        }
+        if (result.picture.length > 0) {
+            let picture = result.picture[0];
+            raw_covers.push({data: picture.data})
+
+            let url = URL.createObjectURL(new Blob([picture.data], {'type': 'image/' + picture.format}));
+
+            let img = new Image();
+            img.src = url;
+            (async()=>await img.decode())();
+
+            dom.alert.textContent += " Decoding image..."
+            insert.cover = url
+
+            if(minidata.canvas_enabled){
+                covers.push(img);
+            }
+        }
+        
+        insert.tags = {
+            title : result.title || file.name,
+            artist : (result.artist && (result.artist.length>0))? result.artist.join(", ") : "Unknown Artist",
+            album : result.album || "Unknown Album",
+            year: result.year || "Unknown Year",
+            genre: (result.genre && (result.genre.length>0))? result.genre.join(", ") : "Unknown Genre"
+        }
+      });
+      full_list.push(insert)
+      dom.alert.textContent += " Inserting to playlist..."
+
+      canvas_dat.x+=150
+      if(canvas_dat.x > dims.width+75){
+          canvas_dat.x = -60
+          canvas_dat.y+=150
+      }
+    }
 
 function renderListSelector() {
     let selctor_el = document.getElementById("playlist_selector")
@@ -301,11 +359,12 @@ async function playlist_play() {
                     }
                 }
         }
+        /*
         handlers.pauseKey = e=>{
             if(e.code === 'Space'){handlers.pause()}
         }
 
-        document.addEventListener("keydown",handlers.pauseKey)
+        document.addEventListener("keydown",handlers.pauseKey)//*/
 
         dom.spd.addEventListener("change",handlers.spd)
         dom.time.addEventListener("change",handlers.time)
@@ -322,7 +381,7 @@ async function playlist_play() {
         dom.date.textContent = audio.tags.year + " - " + audio.tags.genre
 
         await new Promise(r => setTimeout(r,2000))
-        console.log(au_el.duration)
+        //console.log(au_el.duration)
         let t = dom.time, tv = dom.time_display
         while(au_el && au_el.currentTime < (au_el.duration-0.5)){
             if(window.changingTracks){
@@ -332,7 +391,7 @@ async function playlist_play() {
                 dom.spd.removeEventListener("change",handlers.spd)
                 dom.time.removeEventListener("change",handlers.time)
                 dom.pause.removeEventListener("click",handlers.pause)
-                document.removeEventListener("click",handlers.pauseKey)
+                //document.removeEventListener("click",handlers.pauseKey)
                 dom.rewind.removeEventListener("click",handlers.rewind)
                 return
             }
@@ -347,6 +406,7 @@ async function playlist_play() {
         dom.time.removeEventListener("change",handlers.time)
         dom.pause.removeEventListener("click",handlers.pause)
         dom.rewind.removeEventListener("click",handlers.rewind)
+        //document.removeEventListener("click",handlers.pauseKey)
 
         if(a+1==playlist.length){
             a=-1 // due to the a++ in the for, it will increment, so will skip first
@@ -355,7 +415,7 @@ async function playlist_play() {
 }
 
 dom.disable_canvas.addEventListener("click",()=>{
-    console.log(minidata)
+    //console.log(minidata)
     minidata.canvas_enabled = !minidata.canvas_enabled
     dom.disable_canvas.textContent = minidata.canvas_enabled?"Disable canvas":"Enable canvas"
 })
@@ -410,7 +470,7 @@ dom.input.addEventListener("change", async (e) => {
     jsons.forEach(async(j,i)=>{
         try {
             let _j = await j.text()
-            other_playlists[other_playlists.length+i] = JSON.parse(_j)
+            other_playlists.push(JSON.parse(_j))
         } catch(e) {
             console.alert("JSON Error: "+e.message);
             console.alert(e)
@@ -420,7 +480,7 @@ dom.input.addEventListener("change", async (e) => {
 
     await new Promise(r => setTimeout(r,jsons.length*(10+(performanceProfile.mobile*100))))
     other_playlists = other_playlists.filter(a=>!!a.tuampVersion)
-    console.log(other_playlists)
+    //console.log(other_playlists)
     
     other_playlists.forEach(a=>{total_tracks.push(...a.tracks)})
 
@@ -436,6 +496,7 @@ dom.input.addEventListener("change", async (e) => {
             __u.push(r); return true
         }
     })
+    __u = []
 
     if(files.length > 200){
         if(other_playlists.length){
@@ -448,13 +509,19 @@ dom.input.addEventListener("change", async (e) => {
         await new Promise(r => setTimeout(r,jsons.length*(1000+(performanceProfile.mobile*100))))
     }
 
-    other_playlists.push(
-        {
-            tuampVersion: minidata.version,
-            listName: "All files",
-            tracks: files.map(_=>_.name)
-        }
-    )
+    let allFiles = other_playlists.find(_=>_.isAllFiles)
+    if(allFiles){
+       allFiles.tracks.push(...files.map(_=>_.name))
+    } else {
+        other_playlists.push(
+            {
+                tuampVersion: minidata.version,
+                listName: "All files",
+                tracks: files.map(_=>_.name),
+                isAllFiles: true
+            }
+        )
+    }
     //console.log(e.target.files)
     let load = false
 
@@ -480,89 +547,16 @@ dom.input.addEventListener("change", async (e) => {
     await new Promise(r=>setTimeout(r,3000))
   
     for (let file of files) {
-        window.jsmediatags.read(file, {
-            onSuccess: async tag => {
-            dom.alert.textContent = "Reading "+(tag.tags.title||file.name)+"..."
-                let pic = tag.tags.picture;
-                console.log(tag)
-
-                if (!pic){ 
-                    pic = "none"
-                    dom.alert.textContent += " Cover not found!"  //pic = "https://static.vecteezy.com/system/resources/previews/000/421/044/original/music-note-icon-vector-illustration.jpg"
-                }
-
-                const base64 = btoa(
-                new Uint8Array(pic.data)
-                    .reduce((data, byte) => data + String.fromCharCode(byte), "")
-                );
-
-                let mg = (pic!="none")?`data:${pic.format};base64,${base64}`:`./assets/music_placeholder.jpg`
-                let img = new Image()
-                img.src = mg
-
-                await img.decode()
-                dom.alert.textContent += " Decoding image..."
-
-                if(minidata.canvas_enabled){
-                covers.push(img);
-                }
-
-                
-                let pl_url = URL.createObjectURL(file)
-                full_list.push({
-                    url: pl_url,
-                    name: file.name,
-                    tags: {
-                        title: tag.tags.title || file.name,
-                        artist: tag.tags.artist || "Unknown Artist",
-                        album: tag.tags.album || "Unknown Album",
-                        year: tag.tags.year || "Unknown Year",
-                        genre: tag.tags.genre || "Unknown Genre"
-                    },
-                    cover: mg,
-                })
-                dom.alert.textContent += " Inserting to playlist..."
-
-                canvas_dat.x+=150
-                if(canvas_dat.x > dims.width+75){
-                    canvas_dat.x = -60
-                    canvas_dat.y+=150
-                }
-            },
-            onError: err => {
-            dom.alert.textContent = "Reading "+(file.name)+"... Metadata not found..."
-                let pl_url = URL.createObjectURL(file)
-                full_list.push({
-                    url: pl_url,
-                    name: file.name,
-                    tags:{
-                        title: file.name,
-                        artist: "Unknown Artist",
-                        album: "Unknown Album",
-                        year: "Unknown Year",
-                        genre: "Unknown Genre"
-                    },
-                    cover: "",
-                })
-
-                dom.alert.textContent += " Inserting to playlist..."
-                
-                canvas_dat.x+=150
-                if(canvas_dat.x > dims.width+75){
-                    canvas_dat.x = -60
-                    canvas_dat.y+=150
-                }
-
-                console.warn(err)
-            }
-        })
+        //console.log(file)
+        getMetadata(file)
         await new Promise(r=>setTimeout(r,performanceProfile.milis))
     }
 
     await new Promise(r=>setTimeout(r,performanceProfile.milis*50))
     //console.log(performanceProfile)
 
-    await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
+    //await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
+    //probably don't need as now it's sync
 
     for(let u in other_playlists){
         other_playlists[u].files = []
@@ -576,7 +570,7 @@ dom.input.addEventListener("change", async (e) => {
         dom.alert.textContent = "Not enough covers, filling with placeholders...."
         covers = await (async ()=>{
             let templates = ["./assets/vinil.png","./assets/music_placeholder.jpg","./assets/red.png","./assets/cyan.png","./assets/green.png"]
-            let c = []
+            let c = [...covers]
             for(let t of templates){
                 let i = new Image()
                 i.src = t
@@ -586,7 +580,7 @@ dom.input.addEventListener("change", async (e) => {
             return c
         })()
         
-    }
+    };
 
     if(minidata.canvas_enabled){
         setInterval(()=>{
@@ -601,6 +595,8 @@ dom.input.addEventListener("change", async (e) => {
             a.tags.title?.localeCompare(b.tags.title)
         );
     } catch {}
+
+    await new Promise(r=>setTimeout(r,performanceProfile.milis*80))
 
     if(minidata.canvas_enabled && covers.length > 0){
         dom.alert.textContent = "Still not enough covers! Repeating covers...."
@@ -640,7 +636,9 @@ dom.input.addEventListener("change", async (e) => {
             playlist_play()
         }
     })
-
+    document.addEventListener("keydown",(keydown_ev)=>{
+        if(keydown_ev.code === 'Space'){ dom.pause.click() }
+    })
 });
 
 document.getElementById("show").addEventListener("click",()=>{
