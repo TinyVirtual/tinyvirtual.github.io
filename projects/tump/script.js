@@ -35,7 +35,7 @@ let playlist = [],
     full_list = [],
     total_tracks = [],
     current = 0,
-    a = 0;
+    current_track = 0;
 window.changingTracks = false
 
 for(let i of dom_ids){
@@ -314,10 +314,11 @@ function renderPlaylist() {
 
 async function playlist_play() {
     renderPlaylist()
-    for(a = 0; a < playlist.length; a++){
+    for(current_track = 0; current_track < playlist.length; current_track++){
+        let a = current_track
         let audio = playlist[a]
 
-        document.querySelectorAll("audio").forEach((a)=>{
+        document.querySelectorAll("audio").forEach(()=>{
             if(a.ended || a.error){
                 a.pause()
                 a.src = ""
@@ -352,10 +353,12 @@ async function playlist_play() {
             rewind: ()=>{
                     if(a-1>=0){
                         au_el.currentTime = au_el.duration
-                        a-= 2
+                        current_track-= 2
+                        a=current_track
                     } else {
                         au_el.currentTime = au_el.duration
-                        a = playlist.length-1;
+                        current_track = playlist.length-1;
+                        a=current_track
                     }
                 }
         }
@@ -383,7 +386,10 @@ async function playlist_play() {
         await new Promise(r => setTimeout(r,2000))
         //console.log(au_el.duration)
         let t = dom.time, tv = dom.time_display
-        while(au_el && au_el.currentTime < (au_el.duration-0.5)){
+        while(!(au_el && au_el.currentTime)){
+            await new Promise(res=>setTimeout(res,100))
+        }
+        while(au_el.currentTime < (au_el.duration-0.5)){
             if(window.changingTracks){
                 au_el.pause()
                 au_el.remove()
@@ -408,8 +414,8 @@ async function playlist_play() {
         dom.rewind.removeEventListener("click",handlers.rewind)
         //document.removeEventListener("click",handlers.pauseKey)
 
-        if(a+1==playlist.length){
-            a=-1 // due to the a++ in the for, it will increment, so will skip first
+        if(current_track+1==playlist.length){
+           current_track=-1 // due to the a++ in the for, it will increment, so will skip first
         } 
     }
 }
@@ -547,16 +553,13 @@ dom.input.addEventListener("change", async (e) => {
     await new Promise(r=>setTimeout(r,3000))
   
     for (let file of files) {
-        //console.log(file)
         getMetadata(file)
-        await new Promise(r=>setTimeout(r,performanceProfile.milis))
+        await new Promise(r=>setTimeout(r,performanceProfile.milis*4))
     }
 
-    await new Promise(r=>setTimeout(r,performanceProfile.milis*50))
-    //console.log(performanceProfile)
-
-    //await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
+    await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
     //probably don't need as now it's sync
+    //i think it probably needs as it is still async and you can't really await
 
     for(let u in other_playlists){
         other_playlists[u].files = []
