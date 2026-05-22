@@ -91,7 +91,7 @@ function loop(){
     }
 }
 
-function getMetadata(file) {
+async function getMetadata(file) {
     let pl_url = URL.createObjectURL(file)
     let insert = {
         url: pl_url,
@@ -106,47 +106,59 @@ function getMetadata(file) {
         },
         cover: `./assets/music_placeholder.jpg`,
     }
-    musicmetadata(file, function (err, result) {
-        dom.alert.textContent = "Loading "+file.name
-        //console.log(result);
-        if(err){
-            dom.alert.textContent += " Fail!"
-        }
-        if (result.picture.length > 0) {
-            let picture = result.picture[0];
-            raw_covers.push({data: picture.data})
-
-            let url = URL.createObjectURL(new Blob([picture.data], {'type': 'image/' + picture.format}));
-
-            let img = new Image();
-            img.src = url;
-            (async()=>await img.decode())();
-
-            dom.alert.textContent += " Decoding image..."
-            insert.cover = url
-
-            if(minidata.canvas_enabled){
-                covers.push(img);
+    await new Promise(resolve, async()=>{
+        musicmetadata(file, function (err, result) {
+            dom.alert.textContent = "Loading "+file.name
+            //console.log(result);
+            if(err){
+                dom.alert.textContent += " Fail!"
+                full_list.push(insert)
+                canvas_dat.x+=150
+                if(canvas_dat.x > dims.width+75){
+                  canvas_dat.x = -60
+                  canvas_dat.y+=150
+                }
+                resolve()
+                return
             }
-        }
+            if (result.picture.length > 0) {
+                let picture = result.picture[0];
+                raw_covers.push({data: picture.data})
+    
+                let url = URL.createObjectURL(new Blob([picture.data], {'type': 'image/' + picture.format}));
+    
+                let img = new Image();
+                img.src = url;
+                (async()=>await img.decode())();
+    
+                dom.alert.textContent += " Decoding image..."
+                insert.cover = url
+    
+                if(minidata.canvas_enabled){
+                    covers.push(img);
+                }
+            }
+            
+            insert.tags = {
+                title : result.title || file.name,
+                artist : (result.artist && (result.artist.length>0))? result.artist.join(", ") : "Unknown Artist",
+                album : result.album || "Unknown Album",
+                year: result.year || "Unknown Year",
+                genre: (result.genre && (result.genre.length>0))? result.genre.join(", ") : "Unknown Genre"
+            }
+            
+            full_list.push(insert)
+            dom.alert.textContent += " Inserting to playlist..."
         
-        insert.tags = {
-            title : result.title || file.name,
-            artist : (result.artist && (result.artist.length>0))? result.artist.join(", ") : "Unknown Artist",
-            album : result.album || "Unknown Album",
-            year: result.year || "Unknown Year",
-            genre: (result.genre && (result.genre.length>0))? result.genre.join(", ") : "Unknown Genre"
-        }
-      });
-      full_list.push(insert)
-      dom.alert.textContent += " Inserting to playlist..."
-
-      canvas_dat.x+=150
-      if(canvas_dat.x > dims.width+75){
-          canvas_dat.x = -60
-          canvas_dat.y+=150
-      }
-    }
+            canvas_dat.x+=150
+            if(canvas_dat.x > dims.width+75){
+              canvas_dat.x = -60
+              canvas_dat.y+=150
+            }
+            resolve()
+          });
+    })
+}
 
 function renderListSelector() {
     let selctor_el = document.getElementById("playlist_selector")
@@ -553,13 +565,14 @@ dom.input.addEventListener("change", async (e) => {
     await new Promise(r=>setTimeout(r,3000))
   
     for (let file of files) {
-        getMetadata(file)
+        await getMetadata(file)
         await new Promise(r=>setTimeout(r,performanceProfile.milis*4))
     }
 
-    await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
+    //await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
     //probably don't need as now it's sync
     //i think it probably needs as it is still async and you can't really await
+    // i guess i turned into sync now
 
     for(let u in other_playlists){
         other_playlists[u].files = []
