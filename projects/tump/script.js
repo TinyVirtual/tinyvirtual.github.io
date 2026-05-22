@@ -11,7 +11,7 @@ let dom = {},
         "list_change", "hide_button"
     ],
     covers = [],
-    
+    raw_covers = [],
     dims = {
         width: 1980/2,
         height: 1280/2,
