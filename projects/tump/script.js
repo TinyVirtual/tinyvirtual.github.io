@@ -49,7 +49,7 @@ let performanceProfile = {
 
 let minidata = {
     canvas_enabled: !performanceProfile.mobile,
-    version: "0.1.0",
+    version: "0.1.1a",
 }
 dom.disable_canvas.textContent = minidata.canvas_enabled?"Disable canvas":"Enable canvas"
 if(performanceProfile.mobile){
@@ -106,58 +106,45 @@ async function getMetadata(file) {
         },
         cover: `./assets/music_placeholder.jpg`,
     }
-    await new Promise(async(resolve)=>{
-        musicmetadata(file, function (err, result) {
-            dom.alert.textContent = "Loading "+file.name
-            //console.log(result);
-            if(err){
-                dom.alert.textContent += " Fail!"
-                full_list.push(insert)
-                canvas_dat.x+=150
-                if(canvas_dat.x > dims.width+75){
-                  canvas_dat.x = -60
-                  canvas_dat.y+=150
-                }
-                resolve()
-                return
-            }
-            if (result.picture.length > 0) {
-                let picture = result.picture[0];
-                raw_covers.push({data: picture.data})
-    
-                let url = URL.createObjectURL(new Blob([picture.data], {'type': 'image/' + picture.format}));
-    
-                let img = new Image();
-                img.src = url;
-                (async()=>await img.decode())();
-    
-                dom.alert.textContent += " Decoding image..."
-                insert.cover = url
-    
-                if(minidata.canvas_enabled){
-                    covers.push(img);
-                }
-            }
+    dom.alert.textContent = "Loading "+file.name+"..."
+    try {
+        const metadata = await musicMetadata(new Blob([new Uint8Array(await file.arrayBuffer())],{type:file.type}),{duration:true});
+        const result = metadata.common
+
+        insert.tags = {
+          title : result.title || file.name,
+          artist : result.artist || "Unknown Artist",
+          album : result.album || "Unknown Album",
+          year: result.year || "Unknown Year",
+          genre: (result.genre && (result.genre.length>0))? result.genre.join(", ") : "Unknown Genre"
+        }
+        if(metadata.common.picture && metadata.common.picture.length){
+            cover = new Blob([metadata.common.picture[0].data],{type:metadata.common.picture[0].format})
+            insert.cover = URL.createObjectURL(cover)
+
+            let img = new Image();
+            img.src = insert.cover;
+            (async()=>await img.decode())();
             
-            insert.tags = {
-                title : result.title || file.name,
-                artist : (result.artist && (result.artist.length>0))? result.artist.join(", ") : "Unknown Artist",
-                album : result.album || "Unknown Album",
-                year: result.year || "Unknown Year",
-                genre: (result.genre && (result.genre.length>0))? result.genre.join(", ") : "Unknown Genre"
+
+            if(minidata.canvas_enabled){
+                covers.push(img);
             }
-            
-            full_list.push(insert)
-            dom.alert.textContent += " Inserting to playlist..."
-        
             canvas_dat.x+=150
             if(canvas_dat.x > dims.width+75){
               canvas_dat.x = -60
               canvas_dat.y+=150
             }
-            resolve()
-          });
-    })
+        }
+
+
+      } catch (error) {
+
+        console.error('Error parsing metadata:', error.message, file);
+        console.error(file);
+      } finally {
+        full_list.push(insert)
+      }
 }
 
 function renderListSelector() {
@@ -566,12 +553,16 @@ dom.input.addEventListener("change", async (e) => {
 
     let promises = [];
     for (let file of files) {
-        promises.push(getMetadata(file))
-        await new Promise(r=>setTimeout(r,performanceProfile.milis*20))
+        promises.push({
+            p: getMetadata(file),
+            f: file
+        })
+        await new Promise(r=>setTimeout(r,performanceProfile.milis*5))
     }
     
     for(let prom of promises){
-        await prom
+        await prom.p
+        dom.alert.textContent = "Waiting data of "+prom.f.name+" to finish decoding..."
     }
 
     //await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
