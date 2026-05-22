@@ -494,7 +494,7 @@ dom.input.addEventListener("change", async (e) => {
             console.alert(e)
         }
     });
-    dom.alert.textContent = "Parsing JSONs: "+(!!other_playlists.length)?"Found "+other_playlists.length:"None found, skipping..."
+    dom.alert.textContent = "Parsing JSONs: "+((!other_playlists.length)?"Found "+other_playlists.length:"None found, skipping...")
 
     await new Promise(r => setTimeout(r,jsons.length*(10+(performanceProfile.mobile*100))))
     other_playlists = other_playlists.filter(a=>!!a.tuampVersion)
@@ -539,9 +539,9 @@ dom.input.addEventListener("change", async (e) => {
                 isAllFiles: true
             }
         )
-    }
+    };
     //console.log(e.target.files)
-    let load = false
+    let load = false;
 
     //files = files.sort((a)=>(0.5 - Math.random()));
 
