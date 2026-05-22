@@ -106,7 +106,7 @@ async function getMetadata(file) {
         },
         cover: `./assets/music_placeholder.jpg`,
     }
-    await new Promise(resolve, async()=>{
+    await new Promise(async(resolve)=>{
         musicmetadata(file, function (err, result) {
             dom.alert.textContent = "Loading "+file.name
             //console.log(result);
