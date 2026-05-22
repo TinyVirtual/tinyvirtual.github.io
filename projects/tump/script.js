@@ -543,7 +543,7 @@ dom.input.addEventListener("change", async (e) => {
     //console.log(e.target.files)
     let load = false
 
-    files = files.sort((a)=>(0.5 - Math.random()));
+    //files = files.sort((a)=>(0.5 - Math.random()));
 
     (()=>{ let decode_begin = Date.now()
     for(let u=0;u<1e7;u++){ Math.sin(Math.sqrt(u**(2+(0.00176))));  }
@@ -563,10 +563,15 @@ dom.input.addEventListener("change", async (e) => {
     })(performanceProfile.milis)})();
 
     await new Promise(r=>setTimeout(r,3000))
-  
+
+    let promises = [];
     for (let file of files) {
-        await getMetadata(file)
-        await new Promise(r=>setTimeout(r,performanceProfile.milis*4))
+        promises.push(getMetadata(file))
+        await new Promise(r=>setTimeout(r,performanceProfile.milis*20))
+    }
+    
+    for(let prom of promises){
+        await prom
     }
 
     //await new Promise(r=>setTimeout(r,2000+(performanceProfile.milis*5*files.length)))
