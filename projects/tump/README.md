@@ -25,10 +25,50 @@ You can check it out [here](https://tinyvirtual.github.io/projects/tump)
 
 <details>
   <summary>Changelog</summary>
-  <p><b>v0.0.3</b> Fixed lag, changed UI a bit, added more support to mobile, i forgot :/</p>
-  <p><b>v0.0.1:</b> Added the player and the controls, added <code>audio.preservesPitch = false</code></p>
-  <p><b>v0.0.0:</b>
-    Made the cover wall, unfortunately with chatgpt :( i didn't knew how to read metadata</p>
+
+  **v0.1.0:**
+  ```diff
+Changes (this time is made by human, because fuck copilot):
++ added another metadata library, this one now also supports ogg (my most used)
++ fixed pause with space
++ fixed playlist loading issues involving not loading and "memory leaks"
++ no more other all files, all merged togheter, you gotta make the playlist manually or load a specific folder if the case
++ removed degubbing console logs
++ the code it's now sync (because i changed libs)
++ placeholder covers now coexists with other covers
++ Removed some AI Slop suggested codes
+  ```
+  
+  **v0.0.3** 
+  ```
+Fixed lag, changed UI a bit, added more support to mobile, i forgot :/
+Added Playlist selector
+Added play track in the tracks window
+Playlist exporting
+Changed title from Music PLayer to TUAMP
+Added spinning disk
+Changing tracks logic for playback selected from tracks (i guess)
+Added propper alert notification
+Added all playlists
+Performance based loading (because was async)
+Responsiveness
+Option to disable canvas
+Fullscreen
+I dont even know anymore ;-;
+  ```
+  **v0.0.1:** 
+  ```md
+Added the player and the controls, added `audio.preservesPitch = false`
+Used canvas instead of images like ai recomended
+  ```
+  **v0.0.0:** 
+  
+  ```
+Not actually a real version, it was just a prototype cover wall build by chatgpt
+  ```
+[^1]
 </details>
 
-[^1]: Will be added soon...
+-----
+[^1]: disclaimer: i'm sorry for using ai initially, but the code is most part human made, except the playlist thing which was made by ai because i was on hurry and was also too lazy to remake
+  we all kinda need a little boost right?
