@@ -204,7 +204,7 @@ function renderPlaylist() {
         
         // Play
         item.querySelector(".play").onclick = () => {
-            a = index-1;
+            current_track = index-1;
             if(document.querySelector("#music audio")){
                 let u = document.querySelector("#music audio")
                 u.currentTime = document.querySelector("#music audio").duration
