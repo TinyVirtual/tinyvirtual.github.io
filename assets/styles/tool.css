@@ -1,0 +1,193 @@
+table {
+    border-spacing: 0px;
+    border: 1px solid black;
+    margin: 5px 20px;
+        
+    th {
+        border: 1px solid black;
+        padding: 5px 18px;
+    }
+    table {
+        border-spacing: 0px;
+        border: 1px solid black;
+    }
+    td {
+        border: 1px solid black;
+    }
+    thead {
+        background: #acacac;
+    };
+}
+
+.delete-button-min {
+    position: absolute;
+    transform: translateX(10px);
+    border: none;
+    border-radius: 10px;
+    padding: 4px 4px;
+}
+.trash {
+    position: absolute;
+    border: none;
+    transform: translateX(6px);
+    border-radius: 10px;
+}
+.trash::before {
+    position: absolute;
+    border: none;
+    left:0px;
+    top:0px;
+    border-radius: 10px;
+    padding: 4px 4px;
+    content: '🗑️';
+    background: red;
+}
+
+h1.title {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-self: center;
+    text-align: center;
+
+}
+
+.tool {
+    background: rgb(164, 213, 230);
+}
+
+.bg-white {
+    background: white;
+}
+.bg-transparent {
+    background: transparent;
+}
+.bg-blue {
+    background: #5678d8;
+}
+.bg-green {
+    background: #56d861;
+}
+.bg-red {
+    background: #e63434;
+}
+.bg-yellow {
+    background: #e6c534;
+}
+.text-white {
+    color: white;
+}
+.text-bold {
+    font-weight: 900;
+}
+
+button, input, select, textarea {
+    border-radius: 15px;
+    padding: 5px 8px;
+    border: 1px #000 solid;
+    margin: 2px;
+}
+
+button.flat {
+    border: none;
+}
+button.fat {
+    padding: 8px 18px;
+    border-radius: 30px;
+}
+button.border {
+    border: 2px #000 solid;
+}
+
+textarea {
+    width: 100%;
+    min-height: 60px;
+}
+
+.card {
+    padding: 20px 25px;
+    border-radius: 15px;
+    box-shadow: #0002 1px 1px 3px 2px;
+}
+
+* [-data-whitespace]{
+    white-space: pre;
+}
+
+.direction-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+.direction-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.align-left {
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.align-right {
+    align-items: flex-end;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+.align-center {
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.margin-v-1 {
+    margin: 10px 0px;
+}
+.margin-h-1 {
+    margin: 0px 10px;
+}
+.margin-v-2 {
+    margin: 20px 0px;
+}
+.margin-h-2 {
+    margin: 0px 20px;
+}
+.margin-v-4 {
+    margin: 40px 0px;
+}
+.margin-h-4 {
+    margin: 0px 40px;
+}
+.margin-v-8 {
+    margin: 80px 0px;
+}
+.margin-h-8 {
+    margin: 0px 80px;
+}
+.text-small {
+    font-size: small;
+}
+.text-big {
+    font-size: large;
+}
+.text-very-big {
+    font-size: x-large;
+    font-weight: 700;
+}
+
+*[hidden] {
+    display: none !important;
+    position: absolute !important;
+    left: -9999900em !important;
+    top: -9999900em !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+}
