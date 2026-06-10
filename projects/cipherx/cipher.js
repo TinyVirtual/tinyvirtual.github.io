@@ -251,6 +251,30 @@ function from_morse(text){
     return u.join("").replaceAll("0/0","%")
 }
 
+function atocjk(text){
+    let ret = []
+    let realRet = []
+    for(let t of [...text]){
+        let code = t.codePointAt(0)
+        if(code > 0xFF){ console.error("invalid char"); return "Invalid char!"}
+        ret.push(code)
+    }
+    if(ret.length%2!=0){ret.push("20")}
+    for(let t = 0; t < ret.length; t+=2){
+        realRet.push( String.fromCodePoint((ret[t]<<8)| ret[t+1] ) )
+    }
+    return realRet.join("")
+}
+
+function cjktoa(cjk){
+    let ret = []
+    for(let c of [...cjk]){
+        ret.push( String.fromCodePoint(c.codePointAt(0)>>8) )
+        ret.push( String.fromCodePoint(c.codePointAt(0)&0xff) )
+    }
+    return ret.join("")
+}
+
 //let 
 window.options = [
     {
@@ -288,6 +312,12 @@ window.options = [
         useKey: !1,
         encode: to_morse,
         decode: from_morse
+    },
+    {
+        name: "ASCII to UTF16",
+        useKey: !1,
+        encode: atocjk,
+        decode: cjktoa,
     }
 ]; 
 let currently_active = 0, operation = 0
@@ -423,8 +453,10 @@ for(let type in options){
     op.addEventListener("click",()=>{
         currently_active = type
         document.getElementById("current_selection").textContent = "Currently Selected: "+option.name+((!!operation)?" [Decode]":" [Encode]")
+        els.key.hidden = !option.useKey
     })
     document.getElementById("choose").appendChild(op)
+       
 }
 
 
