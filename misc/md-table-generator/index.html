@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+        <title>Markdown Table Generator</title>
+        <link rel="stylesheet" href="/assets/styles/tool.css" />
+    </head> 
+    <body class="tool"> 
+        <h1 class="title">Markdown Table Generator</h1>
+        <div class="center">
+            <div class="bg-white card">
+                <div class="input-wrapper direction-vertical align-center" id="starter_div">
+                    <div>
+                        <label for="qnt">Input the amount of columns</label>
+                        <div class="direction-horizontal align-center">
+                            <input id="qnt" type="number">
+                            <button id="gen" class="generic-min">make</button>
+                        </div>
+                    </div>
+                    <b class="margin-v-2 text-very-big">OR</b>
+                    <div>
+                        <label for="import">Import a table</label>
+                        <div class="direction-vertical align-center">
+                            <textarea id="import"></textarea>
+                            <button id="import-button">Import</button>
+                        </div>
+                    </div>
+                </div>
+                <a id="a_label"></a>
+                <div id="div" class="direction-horizontal align-center">
+                </div>  
+                <br>
+                <div id="preview" class="center">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Preview the table here</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <br>
+                <textarea hidden="" readonly="" id="out" style="background:#0001;white-space:pre;padding:5px;"></textarea>
+                <br>
+                <div>
+                    <button id="copy" class="bg-blue text-white fat">Copy</button>
+                    <span -data-whitespace>  -  </span>
+                    <button id="reset" class="bg-yellow fat">Refresh</button>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>
+
