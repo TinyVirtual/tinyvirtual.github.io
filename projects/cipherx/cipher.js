@@ -67,30 +67,35 @@ let loadin_slow = [
 
 let ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 alphabet = "abcdefghijklmnopqrstuvwxyz";
-function from_binary(bits,conf={}){ 
-    bits = bits.replaceAll(",","").split(" ");
-    //bits = bits.replace(/[_-■●]|⬛️/gmu,"1").replace(/[.□○]|⬜️/gmu,"0").replace(/[.\;,]?\s+|\s+[.\;,]?/gmu," "); /* fallback for emoji, binary morse and phone symbols */
-    if(Object.keys(conf).length){
-        bits = bits.replaceAll(conf.high,"1").replaceAll(conf.low,"0").replaceAll(conf.sep," ")
-    }
-    bits.forEach((a,i)=>{
-        bits[i] = String.fromCharCode(parseInt(a,2))
-    });
-    bits = bits.join(""); 
-    return bits
-}
 
-function to_binary(bits,conf={}){ 
-    bits = bits.split("");
-    bits.forEach((a,i)=>{
-        bits[i] = a.charCodeAt(0).toString(2).padStart(8,"0")
-    }); 
-    bits = bits.join(" "); 
-    if(Object.keys(conf).length){
-        bits = bits.replaceAll(!!conf.high?conf.high:"1").replaceAll(!!conf.low?conf.low:"0").replaceAll(!!conf.sep?conf.sep:" ")
-    };
-    return bits
-}
+const BinaryParser = (()=>{
+    const d = new TextDecoder('utf-8'), 
+    e = new TextEncoder('utf-8');
+
+    return Object.freeze({
+        decode: (binary,strict=!1) => {
+        if(!/^(?:[01]{8}\s*)+$/.test(binary.trim())){
+            if(!strict) return `Error: Invalid Binary String!\n\tCharacters: ${binary.replace(/(?:[01]{8}\s*)+/g,'')}`
+            throw new Error(`BinaryDecodeError: Invalid Binary String!\n\tCharacters: ${binary.replace(/(?:[01]{8}\s*)+/g,'')}`)
+        }    
+        return d.decode(
+            new Uint8Array(
+                binary.trim()
+                    .split(/\s+/)
+                    .map(
+                        bits=>parseInt(bits,2)
+                    )
+                
+            )
+        )},
+        encode: text => [...e.encode(text)]
+            .map(
+                char=>char.toString(2)
+                    .padStart(8,'0')
+            ).join(" ")
+    })
+})()
+
 function hash_key(key=""){
     if (key.length > 52){alert("Key length is too big, maximum alowed is 52"); return 1}
     key = key.split("")
@@ -286,8 +291,8 @@ window.options = [
     {
         name: "Binary",
         useKey: !1,
-        encode: to_binary,
-        decode: from_binary
+        encode: BinaryParser.encode,
+        decode: a=>BinaryParser.decode(a,false) //Disable Strict Mode
     },
     {
         name: "Atbash",
