@@ -1,0 +1,1 @@
+location.hostname='tinyvirtual.pages.dev'

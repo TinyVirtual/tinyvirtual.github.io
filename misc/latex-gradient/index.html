@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <header>
+     <h1 id="title">LaTeX Gradient Generator</h1>
+    </header>
+    <div class="center">
+    <p>this is a latex text generator for github markdown or etc</p>
+    <br>
+    <br>
+    <label>input the text</label>
+    <textarea id="text"></textarea>
+    <br>
+    <label>enter color sequence (in hex code with #, separate with commas)</label>
+    <input type="text" id="colors">
+    <br>
+    <button id="generate">generate</button>
+    <br>
+    <label>preview</label>
+    <div id="preview"></div>
+    <br>
+    <button id="copy">copy</button>
+    </div>
+  <script src="./script.js"></script>
+  </body>
+</html>

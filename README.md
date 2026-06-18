@@ -2,7 +2,7 @@
 
 You can visit the main page [here](https://tinyvirtual.pages.dev).
 
-Basically this was the root of everything I made and hosted
+Basically this **WAS** the root of everything I made and hosted
 
 After some thinking, i decided to make the source a bit more private, i'm sorry
 
