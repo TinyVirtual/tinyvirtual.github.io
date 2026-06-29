@@ -1,1 +1,1 @@
-location.hostname='tinyvirtual.pages.dev'
+location='https://tinyvirtual.pages.dev'+location.pathname
