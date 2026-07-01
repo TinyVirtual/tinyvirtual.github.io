@@ -4,7 +4,7 @@ You can visit the main page [here](https://tinyvirtual.pages.dev).
 
 Basically this **WAS** the root of everything I made and hosted
 
-After some thinking, i decided to make the source a bit more private, i'm sorry
+After some thinking, i decided to make the source in another repo, it might or might not me public, it depends honestly, but its at [Repo:MyPage](https://github.com/TinyVirtual/MyPage)
 
 Currently I have made:
 - Dynamic Biography Page
