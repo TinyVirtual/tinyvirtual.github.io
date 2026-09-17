@@ -1,1 +1,0 @@
-location='https://tinyvirtual.pages.dev'+location.pathname
